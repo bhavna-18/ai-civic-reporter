@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Evidence | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body class="report-page evidence-page">
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="report-navbar">
+
+    <div class="report-nav-inner">
+
+        <!-- BRAND -->
+
+        <a href="/" class="report-brand">
+
+            <div class="report-brand-icon">
+                🚨
+            </div>
+
+            <div class="report-brand-text">
+
+                <h2>AI Civic Reporter</h2>
+
+                <span>
+                    Smart Cities • Better Tomorrow
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <!-- DESKTOP NAV -->
+
+        <nav class="report-nav-links">
+
+            <a href="/">
+                🏠 Home
+            </a>
+
+            <a href="/report" class="active">
+                🚨 Report Issue
+            </a>
+
+            <a href="/citizen-dashboard">
+                👤 Citizen
+            </a>
+
+            <a href="/report-details">
+                🗺️ Civic Intelligence
+            </a>
+
+            <a href="/admin-dashboard">
+                🏛️ Admin
+            </a>
+
+        </nav>
+
+
+        <!-- LOGIN -->
+
+        <a href="/user-login" class="report-login-btn">
+
+            <span>👤</span>
+            Login
+
+        </a>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="report-menu-btn"
+            type="button"
+            onclick="toggleEvidenceMenu()">
+
+            ☰
+
+        </button>
+
+    </div>
+
+
+    <!-- MOBILE NAV -->
+
+    <div
+        id="evidenceMobileMenu"
+        class="report-mobile-menu">
+
+        <a href="/">
+            🏠 Home
+        </a>
+
+        <a href="/report" class="active">
+            🚨 Report Issue
+        </a>
+
+        <a href="/citizen-dashboard">
+            👤 Citizen
+        </a>
+
+        <a href="/report-details">
+            🗺️ Civic Intelligence
+        </a>
+
+        <a href="/admin-dashboard">
+            🏛️ Admin
+        </a>
+
+        <a href="/user-login">
+            👤 Login
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="report-container">
+
+
+    <!-- =====================================================
+         PAGE HEADING
+    ====================================================== -->
+
+    <section class="report-heading">
+
+        <div class="report-badge">
+
+            <span class="report-badge-dot"></span>
+
+            📷 EVIDENCE UPLOAD
+
+        </div>
+
+
+        <h1>
+
+            Add
+            <span>Evidence</span>
+
+        </h1>
+
+
+        <p>
+
+            Upload a photo or video of the civic problem.
+            Our AI will analyze the evidence to understand
+            the issue and determine its priority.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PROGRESS
+    ====================================================== -->
+
+    <section class="report-progress-wrapper">
+
+        <div class="report-progress">
+
+
+            <!-- STEP 1 -->
+
+            <div class="progress-step completed">
+
+                <div class="progress-number">
+                    ✓
+                </div>
+
+                <span>
+                    Issue
+                </span>
+
+            </div>
+
+
+            <div class="progress-line active-line"></div>
+
+
+            <!-- STEP 2 -->
+
+            <div class="progress-step completed">
+
+                <div class="progress-number">
+                    ✓
+                </div>
+
+                <span>
+                    Location
+                </span>
+
+            </div>
+
+
+            <div class="progress-line active-line"></div>
+
+
+            <!-- STEP 3 -->
+
+            <div class="progress-step active">
+
+                <div class="progress-number">
+                    3
+                </div>
+
+                <span>
+                    Evidence
+                </span>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <!-- STEP 4 -->
+
+            <div class="progress-step">
+
+                <div class="progress-number">
+                    4
+                </div>
+
+                <span>
+                    AI Analysis
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         EVIDENCE CARD
+    ====================================================== -->
+
+    <section class="report-card evidence-card">
+
+
+        <!-- CARD HEADER -->
+
+        <div class="card-title">
+
+            <div class="title-icon">
+                📷
+            </div>
+
+
+            <div>
+
+                <h2>
+                    Upload Photo or Video
+                </h2>
+
+                <p>
+                    Clear evidence helps AI identify the issue accurately.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             UPLOAD AREA
+        ================================================== -->
+
+        <div
+            class="upload-area"
+            id="uploadArea">
+
+
+            <div
+                class="upload-icon"
+                id="uploadIcon">
+
+                📸
+
+            </div>
+
+
+            <h3 id="uploadTitle">
+
+                Drag & Drop your evidence here
+
+            </h3>
+
+
+            <p id="uploadText">
+
+                or click to browse from your device
+
+            </p>
+
+
+            <input
+                type="file"
+                id="evidenceInput"
+                accept="image/*,video/*"
+                hidden>
+
+
+            <button
+                type="button"
+                class="browse-btn"
+                onclick="document.getElementById('evidenceInput').click()">
+
+                <span>📁</span>
+
+                Choose File
+
+            </button>
+
+
+            <div class="upload-info">
+
+                <strong>Supported formats</strong>
+
+                <span>
+                    JPG, JPEG, PNG, WEBP, MP4
+                </span>
+
+                <br>
+
+                Maximum file size:
+                <strong>20 MB</strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PREVIEW
+        ================================================== -->
+
+        <div
+            class="preview-section"
+            id="previewSection"
+            style="display:none;">
+
+
+            <div class="preview-header">
+
+                <div class="preview-heading">
+
+                    <div class="preview-check">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Selected Evidence
+                        </h3>
+
+                        <p id="fileName">
+                            File name
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="remove-file-btn"
+                    onclick="removeEvidence()">
+
+                    ✕
+                    Remove
+
+                </button>
+
+            </div>
+
+
+            <div class="preview-box">
+
+                <img
+                    id="imagePreview"
+                    alt="Evidence Preview">
+
+
+                <video
+                    id="videoPreview"
+                    controls>
+                </video>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             AI INFO
+        ================================================== -->
+
+        <div class="ai-info-box">
+
+            <div class="ai-info-icon">
+                🤖
+            </div>
+
+
+            <div>
+
+                <strong>
+                    AI Verification
+                </strong>
+
+
+                <p>
+
+                    After uploading your evidence,
+                    AI will analyze the image/video to
+                    identify the civic issue, detect
+                    possible duplicates and calculate
+                    a priority score.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ACTIONS
+        ================================================== -->
+
+        <div class="form-actions">
+
+
+            <a
+                href="/report"
+                class="back-btn">
+
+                <span>←</span>
+
+                Back
+
+            </a>
+
+
+            <button
+                type="button"
+                class="next-btn"
+                id="continueBtn"
+                onclick="continueToAI()"
+                disabled>
+
+                Continue to AI Analysis
+
+                <span>→</span>
+
+            </button>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="report-footer">
+
+    <div class="report-footer-inner">
+
+        <div>
+
+            <strong>
+                🚨 AI Civic Reporter
+            </strong>
+
+            <span>
+                Smart Cities • Better Tomorrow
+            </span>
+
+        </div>
+
+
+        <p>
+            © 2026 AI Civic Reporter. All Rights Reserved.
+        </p>
+
+
+        <div class="report-footer-status">
+
+            <span></span>
+
+            AI System Online
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="/js/evidence.js"></script>
+
+
+<script>
+
+function toggleEvidenceMenu() {
+
+    const menu =
+        document.getElementById("evidenceMobileMenu");
+
+    if (!menu) return;
+
+    menu.classList.toggle("show");
+
+}
+
+</script>
+
+
+</body>
+
+</html>

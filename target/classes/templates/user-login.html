@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Login | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body class="login-page">
+
+    <!-- ================= LOGIN CONTAINER ================= -->
+
+    <div class="login-container">
+
+        <!-- LEFT SIDE -->
+
+        <div class="login-info">
+
+            <div class="login-brand">
+                🚨 AI Civic Reporter
+            </div>
+
+            <h1>
+                Welcome Back,<br>
+                Citizen!
+            </h1>
+
+            <p>
+                Login to report civic issues, track your complaints
+                and help make your city smarter.
+            </p>
+
+            <div class="login-features">
+
+                <div class="login-feature">
+                    <span>📢</span>
+
+                    <div>
+                        <strong>Report Issues</strong>
+                        <small>Report civic problems easily</small>
+                    </div>
+
+                </div>
+
+
+                <div class="login-feature">
+                    <span>📍</span>
+
+                    <div>
+                        <strong>Track Complaints</strong>
+                        <small>Monitor your complaint status</small>
+                    </div>
+
+                </div>
+
+
+                <div class="login-feature">
+                    <span>🤖</span>
+
+                    <div>
+                        <strong>AI Verification</strong>
+                        <small>Smart AI-powered issue analysis</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RIGHT SIDE ================= -->
+
+        <div class="login-card">
+
+            <div class="login-icon">
+                👤
+            </div>
+
+            <h2>Citizen Login</h2>
+
+            <p class="login-subtitle">
+                Sign in to your account
+            </p>
+
+
+            <!-- EMAIL -->
+
+            <div class="input-group">
+
+                <label>
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    Email Address
+
+                </label>
+
+                <input type="email" id="userEmail" placeholder="Enter your email" autocomplete="email" required>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="input-group">
+
+                <label>
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    Password
+
+                </label>
+
+
+                <div class="password-box">
+
+                    <input type="password" id="userPassword" placeholder="Enter your password"
+                        autocomplete="current-password" required>
+
+                    <button type="button" onclick="toggleUserPassword()">
+
+                        👁️
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- REMEMBER + FORGOT -->
+
+            <div class="login-options">
+
+                <label class="remember">
+
+                    <input type="checkbox" id="rememberMe">
+
+                    <span>
+                        Remember me
+                    </span>
+
+                </label>
+
+
+                <a href="#" onclick="forgotPassword(event)">
+
+                    Forgot Password?
+
+                </a>
+
+            </div>
+            <div class="create-account-link">
+                <span>Don't have an account?</span>
+                <a href="/register">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Create New Account
+                </a>
+            </div>
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button class="login-submit-btn" id="loginButton" onclick="userLogin()">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Login as Citizen
+
+            </button>
+
+
+            <!-- LOGIN MESSAGE -->
+
+            <div id="loginMessage"></div>
+            <!-- BACK -->
+
+            <button type="button" class="back-home-btn" onclick="window.location.href='/'">
+
+                ← Back to Home
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+
+        /* =========================================
+           TOGGLE PASSWORD
+        ========================================= */
+
+        function toggleUserPassword() {
+
+            const password =
+                document.getElementById("userPassword");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+            }
+
+            else {
+
+                password.type = "password";
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           CITIZEN LOGIN
+        ========================================= */
+
+        async function userLogin() {
+
+            const email =
+                document.getElementById("userEmail")
+                    .value
+                    .trim();
+
+
+            const password =
+                document.getElementById("userPassword")
+                    .value;
+
+
+            const loginButton =
+                document.getElementById("loginButton");
+
+
+            const message =
+                document.getElementById("loginMessage");
+
+
+            /* Validate */
+
+            if (email === "" || password === "") {
+
+                showLoginMessage(
+                    "⚠️ Please enter email and password.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* Email validation */
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+            if (!emailPattern.test(email)) {
+
+                showLoginMessage(
+                    "⚠️ Please enter a valid email address.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* Disable button */
+
+            loginButton.disabled = true;
+
+            loginButton.innerHTML =
+                '<i class="fa-solid fa-spinner fa-spin"></i> Logging in...';
+
+
+            try {
+
+                /* =========================================
+                   SEND LOGIN REQUEST TO SPRING BOOT
+                ========================================= */
+
+                const response =
+                    await fetch("/api/users/login", {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            email: email,
+
+                            password: password
+
+                        })
+
+                    });
+
+
+                const result =
+                    await response.json()
+                        .catch(() => null);
+
+
+                /* =========================================
+                   LOGIN FAILED
+                ========================================= */
+
+                if (!response.ok) {
+
+                    const errorMessage =
+                        typeof result === "string"
+                            ? result
+                            : "Invalid email or password.";
+
+                    showLoginMessage(
+                        "❌ " + errorMessage,
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                /* =========================================
+                   CHECK ROLE
+                ========================================= */
+
+                if (
+                    result.role &&
+                    result.role.toUpperCase() !== "CITIZEN"
+                ) {
+
+                    showLoginMessage(
+                        "❌ This account is not a Citizen account.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                /* =========================================
+                   SAVE USER SESSION
+                ========================================= */
+
+                sessionStorage.setItem(
+                    "loggedInUser",
+                    JSON.stringify(result)
+                );
+
+
+                sessionStorage.setItem(
+                    "userId",
+                    result.id || ""
+                );
+
+
+                sessionStorage.setItem(
+                    "userName",
+                    result.name || ""
+                );
+
+
+                sessionStorage.setItem(
+                    "userEmail",
+                    result.email || email
+                );
+
+
+                sessionStorage.setItem(
+                    "userRole",
+                    result.role || "CITIZEN"
+                );
+
+
+                /* =========================================
+                   REMEMBER ME
+                ========================================= */
+
+                if (
+                    document.getElementById("rememberMe")
+                        .checked
+                ) {
+
+                    localStorage.setItem(
+                        "rememberedEmail",
+                        email
+                    );
+
+                }
+
+                else {
+
+                    localStorage.removeItem(
+                        "rememberedEmail"
+                    );
+
+                }
+
+
+                /* =========================================
+                   SUCCESS
+                ========================================= */
+
+                showLoginMessage(
+                    "✅ Login successful! Redirecting...",
+                    "success"
+                );
+
+
+                setTimeout(function () {
+
+                    window.location.href =
+                        "/citizen-dashboard";
+
+                }, 700);
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+
+                showLoginMessage(
+                    "❌ Unable to connect to server. Please try again.",
+                    "error"
+                );
+
+            }
+
+
+            finally {
+
+                loginButton.disabled = false;
+
+                loginButton.innerHTML =
+                    '<i class="fa-solid fa-right-to-bracket"></i> Login as Citizen';
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           SHOW LOGIN MESSAGE
+        ========================================= */
+
+        function showLoginMessage(
+            text,
+            type
+        ) {
+
+            const message =
+                document.getElementById(
+                    "loginMessage"
+                );
+
+
+            message.style.display =
+                "block";
+
+
+            message.textContent =
+                text;
+
+
+            if (type === "success") {
+
+                message.style.background =
+                    "#dcfce7";
+
+                message.style.color =
+                    "#166534";
+
+            }
+
+            else {
+
+                message.style.background =
+                    "#fee2e2";
+
+                message.style.color =
+                    "#991b1b";
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           FORGOT PASSWORD
+        ========================================= */
+
+        function forgotPassword(event) {
+
+            event.preventDefault();
+
+
+            alert(
+                "🔐 Password recovery module will be added soon."
+            );
+
+        }
+
+
+
+        /* =========================================
+           ENTER KEY LOGIN
+        ========================================= */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    userLogin();
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================
+           LOAD REMEMBERED EMAIL
+        ========================================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const rememberedEmail =
+                    localStorage.getItem(
+                        "rememberedEmail"
+                    );
+
+
+                if (rememberedEmail) {
+
+                    document.getElementById(
+                        "userEmail"
+                    ).value =
+                        rememberedEmail;
+
+
+                    document.getElementById(
+                        "rememberMe"
+                    ).checked = true;
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

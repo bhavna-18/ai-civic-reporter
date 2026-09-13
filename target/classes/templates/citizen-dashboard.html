@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Citizen Dashboard | AI Civic Reporter
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+
+<body class="report-page">
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar citizen-navbar">
+
+
+    <!-- LOGO -->
+
+    <div class="logo-area">
+
+        <div class="logo-icon">
+            🚨
+        </div>
+
+
+        <div class="citizen-brand-text">
+
+            <h2>
+                AI Civic Reporter
+            </h2>
+
+            <p>
+                Smart Cities • Better Tomorrow
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         DESKTOP NAVIGATION
+    ====================================== -->
+
+    <nav class="citizen-nav">
+
+        <a
+            href="/"
+            class="nav-link"
+        >
+            🏠 Home
+        </a>
+
+
+        <a
+            href="/report"
+            class="nav-link"
+        >
+            🚨 Report Issue
+        </a>
+
+
+        <a
+            href="/citizen-dashboard"
+            class="nav-link active"
+        >
+            👤 Dashboard
+        </a>
+
+
+        <a
+            href="/report-details"
+            class="nav-link"
+        >
+            🗺️ Civic Intelligence
+        </a>
+
+
+        <a
+            href="/admin-dashboard"
+            class="nav-link"
+        >
+            🏛️ Admin
+        </a>
+
+    </nav>
+
+
+
+    <!-- =====================================
+         MOBILE HAMBURGER
+    ====================================== -->
+
+    <button
+        type="button"
+        class="citizen-menu-btn"
+        id="citizenMenuBtn"
+        aria-label="Open navigation"
+        aria-expanded="false"
+    >
+
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+
+    </button>
+
+
+</header>
+
+
+
+<!-- =========================================
+     DASHBOARD
+========================================= -->
+
+<main class="dashboard-container">
+
+
+    <!-- =====================================
+         WELCOME SECTION
+    ====================================== -->
+
+    <section class="dashboard-welcome">
+
+
+        <div>
+
+
+            <span class="welcome-badge">
+
+                👋 Citizen Portal
+
+            </span>
+
+
+
+            <h1>
+
+                Welcome back,
+
+                <span>
+                    Citizen!
+                </span>
+
+            </h1>
+
+
+
+            <p>
+
+                Track your civic complaints and help make
+                your community better.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- REPORT NEW ISSUE -->
+
+        <a
+            href="/report"
+            class="dashboard-report-btn"
+        >
+
+            🚨 Report New Issue
+
+            <span>
+                →
+            </span>
+
+        </a>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         STATISTICS
+    ====================================== -->
+
+    <section class="dashboard-stats">
+
+
+        <!-- =================================
+             TOTAL REPORTS
+        ================================== -->
+
+        <div class="dashboard-stat-card">
+
+
+            <div class="dashboard-stat-icon blue">
+
+                📋
+
+            </div>
+
+
+
+            <div>
+
+
+                <span>
+                    Total Reports
+                </span>
+
+
+                <h2 id="dashboardTotal">
+                    12
+                </h2>
+
+
+                <small>
+                    All submitted complaints
+                </small>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             PENDING
+        ================================== -->
+
+        <div class="dashboard-stat-card">
+
+
+            <div class="dashboard-stat-icon orange">
+
+                ⏳
+
+            </div>
+
+
+
+            <div>
+
+
+                <span>
+                    Pending
+                </span>
+
+
+                <h2 id="dashboardPending">
+                    3
+                </h2>
+
+
+                <small>
+                    Awaiting verification
+                </small>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             IN PROGRESS
+        ================================== -->
+
+        <div class="dashboard-stat-card">
+
+
+            <div class="dashboard-stat-icon purple">
+
+                🔄
+
+            </div>
+
+
+
+            <div>
+
+
+                <span>
+                    In Progress
+                </span>
+
+
+                <h2 id="dashboardProgress">
+                    4
+                </h2>
+
+
+                <small>
+                    Being worked on
+                </small>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             RESOLVED
+        ================================== -->
+
+        <div class="dashboard-stat-card">
+
+
+            <div class="dashboard-stat-icon green">
+
+                ✓
+
+            </div>
+
+
+
+            <div>
+
+
+                <span>
+                    Resolved
+                </span>
+
+
+                <h2 id="dashboardResolved">
+                    5
+                </h2>
+
+
+                <small>
+                    Successfully resolved
+                </small>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         MAIN GRID
+    ====================================== -->
+
+    <section class="dashboard-main-grid">
+
+
+        <!-- =================================
+             RECENT REPORTS
+        ================================== -->
+
+        <div class="dashboard-reports-card">
+
+
+            <!-- CARD HEADER -->
+
+            <div class="dashboard-card-header">
+
+
+                <div>
+
+
+                    <h2>
+                        📋 Recent Reports
+                    </h2>
+
+
+                    <p>
+                        Your latest civic complaints
+                    </p>
+
+
+                </div>
+
+
+
+                <a href="/my-reports">
+
+                    View All →
+
+                </a>
+
+
+            </div>
+
+
+
+            <!-- REPORT LIST -->
+
+            <div class="report-list">
+
+
+                <!-- =================================
+                     REPORT 1
+                ================================== -->
+
+                <div class="dashboard-report-row">
+
+
+                    <div
+                        class="report-category-icon pothole"
+                    >
+                        🛣️
+                    </div>
+
+
+
+                    <div class="report-row-info">
+
+
+                        <strong>
+                            Road Pothole
+                        </strong>
+
+
+                        <span>
+                            CIVIC-2026-4821
+                        </span>
+
+
+                        <small>
+                            📍 Main Road • Today
+                        </small>
+
+
+                    </div>
+
+
+
+                    <span
+                        class="dashboard-status progress"
+                    >
+                        In Progress
+                    </span>
+
+
+                </div>
+
+
+
+                <!-- =================================
+                     REPORT 2
+                ================================== -->
+
+                <div class="dashboard-report-row">
+
+
+                    <div
+                        class="report-category-icon garbage"
+                    >
+                        🗑️
+                    </div>
+
+
+
+                    <div class="report-row-info">
+
+
+                        <strong>
+                            Garbage Overflow
+                        </strong>
+
+
+                        <span>
+                            CIVIC-2026-3914
+                        </span>
+
+
+                        <small>
+                            📍 Market Area • Yesterday
+                        </small>
+
+
+                    </div>
+
+
+
+                    <span
+                        class="dashboard-status resolved"
+                    >
+                        Resolved
+                    </span>
+
+
+                </div>
+
+
+
+                <!-- =================================
+                     REPORT 3
+                ================================== -->
+
+                <div class="dashboard-report-row">
+
+
+                    <div
+                        class="report-category-icon light"
+                    >
+                        💡
+                    </div>
+
+
+
+                    <div class="report-row-info">
+
+
+                        <strong>
+                            Streetlight Issue
+                        </strong>
+
+
+                        <span>
+                            CIVIC-2026-2748
+                        </span>
+
+
+                        <small>
+                            📍 Station Road • 2 days ago
+                        </small>
+
+
+                    </div>
+
+
+
+                    <span
+                        class="dashboard-status pending"
+                    >
+                        Pending
+                    </span>
+
+
+                </div>
+
+
+
+                <!-- =================================
+                     REPORT 4
+                ================================== -->
+
+                <div class="dashboard-report-row">
+
+
+                    <div
+                        class="report-category-icon water"
+                    >
+                        💧
+                    </div>
+
+
+
+                    <div class="report-row-info">
+
+
+                        <strong>
+                            Water Leakage
+                        </strong>
+
+
+                        <span>
+                            CIVIC-2026-1832
+                        </span>
+
+
+                        <small>
+                            📍 Shivaji Nagar • 4 days ago
+                        </small>
+
+
+                    </div>
+
+
+
+                    <span
+                        class="dashboard-status resolved"
+                    >
+                        Resolved
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             QUICK ACTIONS
+        ================================== -->
+
+        <div class="dashboard-side-card">
+
+
+            <h2>
+                ⚡ Quick Actions
+            </h2>
+
+
+            <p>
+                Access important citizen services
+            </p>
+
+
+
+            <!-- REPORT NEW ISSUE -->
+
+            <a
+                href="/report"
+                class="quick-action"
+            >
+
+
+                <div>
+                    🚨
+                </div>
+
+
+                <span>
+                    Report New Issue
+                </span>
+
+
+                <b>
+                    →
+                </b>
+
+
+            </a>
+
+
+
+            <!-- MY REPORTS -->
+
+            <a
+                href="/my-reports"
+                class="quick-action"
+            >
+
+
+                <div>
+                    📋
+                </div>
+
+
+                <span>
+                    My Reports
+                </span>
+
+
+                <b>
+                    →
+                </b>
+
+
+            </a>
+
+
+
+            <!-- TRACK COMPLAINT -->
+
+            <a
+                href="/track-report"
+                class="quick-action"
+            >
+
+
+                <div>
+                    📍
+                </div>
+
+
+                <span>
+                    Track Complaint
+                </span>
+
+
+                <b>
+                    →
+                </b>
+
+
+            </a>
+
+
+
+            <!-- NEARBY PROBLEMS -->
+
+            <a
+                href="#"
+                class="quick-action"
+            >
+
+
+                <div>
+                    🗺️
+                </div>
+
+
+                <span>
+                    Nearby Problems
+                </span>
+
+
+                <b>
+                    →
+                </b>
+
+
+            </a>
+
+
+
+            <!-- FEEDBACK -->
+
+            <a
+                href="#"
+                class="quick-action"
+            >
+
+
+                <div>
+                    💬
+                </div>
+
+
+                <span>
+                    Give Feedback
+                </span>
+
+
+                <b>
+                    →
+                </b>
+
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         RECENT ACTIVITY
+    ====================================== -->
+
+    <section class="dashboard-activity">
+
+
+        <!-- ACTIVITY HEADER -->
+
+        <div class="dashboard-card-header">
+
+
+            <div>
+
+
+                <h2>
+                    🔔 Recent Activity
+                </h2>
+
+
+                <p>
+                    Latest updates on your reports
+                </p>
+
+
+            </div>
+
+
+
+            <a href="/my-reports">
+
+                View All →
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- ACTIVITY LIST -->
+
+        <div class="activity-list">
+
+
+            <!-- =================================
+                 ACTIVITY 1
+            ================================== -->
+
+            <div class="activity-item">
+
+
+                <div class="activity-icon green">
+
+                    ✓
+
+                </div>
+
+
+
+                <div>
+
+
+                    <strong>
+                        Your garbage complaint was resolved
+                    </strong>
+
+
+                    <p>
+
+                        Complaint CIVIC-2026-3914 has been
+                        marked as resolved.
+
+                    </p>
+
+
+                    <small>
+
+                        Yesterday • 4:30 PM
+
+                    </small>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 ACTIVITY 2
+            ================================== -->
+
+            <div class="activity-item">
+
+
+                <div class="activity-icon blue">
+
+                    🔄
+
+                </div>
+
+
+
+                <div>
+
+
+                    <strong>
+                        Your pothole complaint is now in progress
+                    </strong>
+
+
+                    <p>
+
+                        Road & Transport Department has
+                        started working on it.
+
+                    </p>
+
+
+                    <small>
+
+                        Today • 11:15 AM
+
+                    </small>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 ACTIVITY 3
+            ================================== -->
+
+            <div class="activity-item">
+
+
+                <div class="activity-icon orange">
+
+                    🤖
+
+                </div>
+
+
+
+                <div>
+
+
+                    <strong>
+                        AI verified your streetlight complaint
+                    </strong>
+
+
+                    <p>
+
+                        Your submitted evidence has been
+                        successfully analyzed.
+
+                    </p>
+
+
+                    <small>
+
+                        2 days ago
+
+                    </small>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="/js/citizen-dashboard.js"></script>
+
+
+<script>
+
+/* =====================================================
+   CITIZEN DASHBOARD MOBILE NAVBAR
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const menuBtn =
+            document.getElementById(
+                "citizenMenuBtn"
+            );
+
+
+        const navbar =
+            document.querySelector(
+                ".citizen-navbar"
+            );
+
+
+        const navLinks =
+            document.querySelectorAll(
+                ".citizen-navbar .citizen-nav .nav-link"
+            );
+
+
+        /* SAFETY CHECK */
+
+        if (!menuBtn || !navbar) {
+
+            return;
+
+        }
+
+
+        /* =============================================
+           OPEN / CLOSE HAMBURGER
+        ============================================== */
+
+        menuBtn.addEventListener(
+            "click",
+            function (event) {
+
+
+                event.stopPropagation();
+
+
+                navbar.classList.toggle(
+                    "mobile-menu-open"
+                );
+
+
+                const isOpen =
+                    navbar.classList.contains(
+                        "mobile-menu-open"
+                    );
+
+
+                menuBtn.setAttribute(
+                    "aria-expanded",
+                    isOpen
+                        ? "true"
+                        : "false"
+                );
+
+
+            }
+        );
+
+
+
+        /* =============================================
+           CLOSE AFTER LINK CLICK
+        ============================================== */
+
+        navLinks.forEach(
+            function (link) {
+
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+
+                        navbar.classList.remove(
+                            "mobile-menu-open"
+                        );
+
+
+                        menuBtn.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+
+                    }
+                );
+
+
+            }
+        );
+
+
+
+        /* =============================================
+           CLOSE WHEN CLICKING OUTSIDE
+        ============================================== */
+
+        document.addEventListener(
+            "click",
+            function (event) {
+
+
+                if (
+                    !navbar.contains(
+                        event.target
+                    )
+                ) {
+
+
+                    navbar.classList.remove(
+                        "mobile-menu-open"
+                    );
+
+
+                    menuBtn.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+
+                }
+
+
+            }
+        );
+
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | AI Civic Reporter</title>
+
+    <!-- COMMON PROJECT CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+
+<body class="register-page">
+
+
+<!-- =========================================================
+     NAVBAR
+     ========================================================= -->
+
+<header class="register-navbar">
+
+    <a href="/" class="register-brand">
+
+        <div class="register-brand-icon">
+            🚨
+        </div>
+
+        <div class="register-brand-text">
+
+            <strong>
+                AI Civic Reporter
+            </strong>
+
+            <span>
+                Smart Cities • Better Tomorrow
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <a href="/user-login" class="back-login">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Back to Login
+
+    </a>
+
+</header>
+
+
+
+<!-- =========================================================
+     REGISTER PAGE
+     ========================================================= -->
+
+<main class="register-wrapper">
+
+
+    <div class="register-card">
+
+
+        <!-- =================================================
+             HEADER
+             ================================================= -->
+
+        <div class="register-header">
+
+            <div class="register-icon">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+            </div>
+
+
+            <h1>
+                Create Your Account
+            </h1>
+
+
+            <p>
+                Join AI Civic Reporter and help make your city better.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FORM
+             ================================================= -->
+
+        <form
+            id="registerForm"
+            class="register-form">
+
+
+            <!-- FULL NAME -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PHONE -->
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter your 10-digit phone number"
+                        autocomplete="tel"
+                        maxlength="10"
+                        pattern="[0-9]{10}"
+                        required>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required>
+
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword('password', 'passwordEye')">
+
+                        <i
+                            class="fa-solid fa-eye"
+                            id="passwordEye">
+                        </i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirm your password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required>
+
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword('confirmPassword', 'confirmPasswordEye')">
+
+                        <i
+                            class="fa-solid fa-eye"
+                            id="confirmPasswordEye">
+                        </i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TERMS -->
+
+            <label class="terms-box">
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                    required>
+
+                <span>
+
+                    I agree to the
+                    <a href="#" onclick="return false;">
+                        Terms & Conditions
+                    </a>
+
+                    and understand that my account will be created
+                    as a Citizen account.
+
+                </span>
+
+            </label>
+
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="registerMessage"
+                class="register-message">
+            </div>
+
+
+
+            <!-- CREATE ACCOUNT -->
+
+            <button
+                type="submit"
+                class="create-account-btn"
+                id="createAccountBtn">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                Create Citizen Account
+
+            </button>
+
+        </form>
+
+
+
+        <!-- =================================================
+             LOGIN LINK
+             ================================================= -->
+
+        <div class="login-link-box">
+
+            <span>
+                Already have an account?
+            </span>
+
+            <a href="/user-login">
+                Login here
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CITIZEN INFORMATION
+             ================================================= -->
+
+        <div class="citizen-note">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            New accounts are automatically registered as
+            <strong>Citizen</strong>.
+
+            Admin accounts can only be created by the
+            system administrator.
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+
+/* =========================================================
+   PASSWORD TOGGLE
+   ========================================================= */
+
+function togglePassword(inputId, iconId) {
+
+    const input =
+        document.getElementById(inputId);
+
+    const icon =
+        document.getElementById(iconId);
+
+
+    if (input.type === "password") {
+
+        input.type = "text";
+
+        icon.classList.remove("fa-eye");
+
+        icon.classList.add("fa-eye-slash");
+
+    }
+
+    else {
+
+        input.type = "password";
+
+        icon.classList.remove("fa-eye-slash");
+
+        icon.classList.add("fa-eye");
+
+    }
+
+}
+
+
+
+/* =========================================================
+   SHOW MESSAGE
+   ========================================================= */
+
+function showMessage(message, type) {
+
+    const box =
+        document.getElementById("registerMessage");
+
+
+    box.textContent = message;
+
+
+    box.className =
+        "register-message " + type;
+
+}
+
+
+
+/* =========================================================
+   REGISTRATION
+   ========================================================= */
+
+document
+    .getElementById("registerForm")
+    .addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document.getElementById("name")
+            .value
+            .trim();
+
+
+        const email =
+            document.getElementById("email")
+            .value
+            .trim();
+
+
+        const phone =
+            document.getElementById("phone")
+            .value
+            .trim();
+
+
+        const password =
+            document.getElementById("password")
+            .value;
+
+
+        const confirmPassword =
+            document.getElementById("confirmPassword")
+            .value;
+
+
+        const terms =
+            document.getElementById("terms")
+            .checked;
+
+
+        const button =
+            document.getElementById("createAccountBtn");
+
+
+
+        /* =================================================
+           VALIDATION
+           ================================================= */
+
+        if (password !== confirmPassword) {
+
+            showMessage(
+                "Passwords do not match.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (!/^[0-9]{10}$/.test(phone)) {
+
+            showMessage(
+                "Please enter a valid 10-digit phone number.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (!terms) {
+
+            showMessage(
+                "Please accept the Terms & Conditions.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+
+        /* =================================================
+           LOADING
+           ================================================= */
+
+        button.disabled = true;
+
+
+        button.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Creating Account...';
+
+
+
+        try {
+
+
+            /* =================================================
+               API REQUEST
+               ================================================= */
+
+            const response =
+                await fetch("/api/users/register", {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        name: name,
+
+                        email: email,
+
+                        phone: phone,
+
+                        password: password
+
+                    })
+
+                });
+
+
+
+            let data = {};
+
+
+            try {
+
+                data =
+                    await response.json();
+
+            }
+
+            catch (error) {
+
+                data = {};
+
+            }
+
+
+
+            /* =================================================
+               SUCCESS
+               ================================================= */
+
+            if (response.ok) {
+
+                showMessage(
+                    "Account created successfully! Redirecting to Login...",
+                    "success"
+                );
+
+
+                button.innerHTML =
+                    '<i class="fa-solid fa-check"></i> Account Created';
+
+
+
+                setTimeout(function() {
+
+                    window.location.href =
+                        "/user-login";
+
+                }, 1200);
+
+
+                return;
+
+            }
+
+
+
+            /* =================================================
+               ERROR
+               ================================================= */
+
+            let errorMessage =
+                data.message ||
+                data.error ||
+                "Registration failed. Please try again.";
+
+
+            if (response.status === 409) {
+
+                errorMessage =
+                    "An account with this email already exists.";
+
+            }
+
+
+            showMessage(
+                errorMessage,
+                "error"
+            );
+
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Registration error:",
+                error
+            );
+
+
+            showMessage(
+                "Unable to connect to the server. Please make sure Spring Boot is running.",
+                "error"
+            );
+
+        }
+
+
+
+        /* =================================================
+           RESET BUTTON
+           ================================================= */
+
+        button.disabled = false;
+
+
+        button.innerHTML =
+            '<i class="fa-solid fa-user-plus"></i> Create Citizen Account';
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

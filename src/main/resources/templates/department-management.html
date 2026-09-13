@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Department Management | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body class="admin-page">
+
+<header class="navbar">
+
+    <div class="logo-area">
+
+        <div class="logo-icon">🚨</div>
+
+        <div>
+            <h2>AI Civic Reporter</h2>
+            <p>Smart Cities • Better Tomorrow</p>
+        </div>
+
+    </div>
+
+    <nav>
+
+        <a href="/" class="nav-link">🏠 Home</a>
+
+        <a href="/citizen-dashboard" class="nav-link">
+            👤 Citizen
+        </a>
+
+        <a href="/admin-dashboard" class="nav-link active">
+            🏛️ Admin
+        </a>
+
+        <a href="#" class="nav-link">
+            🗺️ Civic Map
+        </a>
+
+        <a href="#" class="nav-link">
+            📊 Analytics
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="department-container">
+
+
+    <!-- HEADER -->
+
+    <section class="department-header">
+
+        <div>
+
+            <span class="admin-badge">
+                🏛️ ADMIN MANAGEMENT
+            </span>
+
+            <h1>
+                Department <span>Management</span>
+            </h1>
+
+            <p>
+                Manage civic departments, officers and complaint workload.
+            </p>
+
+        </div>
+
+        <button
+            class="add-department-btn"
+            onclick="openDepartmentModal()"
+        >
+            + Add Department
+        </button>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="department-stats">
+
+
+        <div class="department-stat">
+
+            <div class="department-stat-icon blue">
+                🏛️
+            </div>
+
+            <div>
+
+                <span>
+                    DEPARTMENTS
+                </span>
+
+                <strong id="departmentCount">
+                    5
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="department-stat">
+
+            <div class="department-stat-icon green">
+                👨‍💼
+            </div>
+
+            <div>
+
+                <span>
+                    ACTIVE OFFICERS
+                </span>
+
+                <strong>
+                    42
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="department-stat">
+
+            <div class="department-stat-icon orange">
+                📋
+            </div>
+
+            <div>
+
+                <span>
+                    PENDING COMPLAINTS
+                </span>
+
+                <strong>
+                    186
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="department-stat">
+
+            <div class="department-stat-icon red">
+                ⚡
+            </div>
+
+            <div>
+
+                <span>
+                    HIGH WORKLOAD
+                </span>
+
+                <strong>
+                    2
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <section class="department-tools">
+
+        <div class="department-search">
+
+            🔎
+
+            <input
+                type="text"
+                id="departmentSearch"
+                placeholder="Search department..."
+            >
+
+        </div>
+
+
+        <select id="departmentFilter">
+
+            <option value="all">
+                All Departments
+            </option>
+
+            <option value="active">
+                Active
+            </option>
+
+            <option value="inactive">
+                Inactive
+            </option>
+
+        </select>
+
+    </section>
+
+
+    <!-- DEPARTMENT CARDS -->
+
+    <section class="department-grid" id="departmentGrid">
+
+
+        <!-- ROADS -->
+
+        <div
+            class="department-card"
+            data-status="active"
+        >
+
+            <div class="department-card-top">
+
+                <div class="large-department-icon road">
+                    🛣️
+                </div>
+
+                <span class="active-status">
+                    ● Active
+                </span>
+
+            </div>
+
+
+            <h2>
+                Roads & Infrastructure
+            </h2>
+
+            <p>
+                Handles potholes, damaged roads,
+                footpaths and road maintenance.
+            </p>
+
+
+            <div class="department-metrics">
+
+                <div>
+                    <span>OFFICERS</span>
+                    <strong>14</strong>
+                </div>
+
+                <div>
+                    <span>PENDING</span>
+                    <strong>68</strong>
+                </div>
+
+                <div>
+                    <span>RESOLVED</span>
+                    <strong>342</strong>
+                </div>
+
+            </div>
+
+
+            <div class="workload">
+
+                <div class="workload-label">
+
+                    <span>
+                        Workload
+                    </span>
+
+                    <strong>
+                        78%
+                    </strong>
+
+                </div>
+
+                <div class="workload-bar">
+
+                    <div
+                        class="workload-fill high"
+                        style="width:78%"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="department-actions">
+
+                <button
+                    onclick="editDepartment('Roads & Infrastructure')"
+                >
+                    ✏️ Edit
+                </button>
+
+                <button
+                    onclick="viewOfficers('Roads & Infrastructure')"
+                >
+                    👨‍💼 Officers
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SANITATION -->
+
+        <div
+            class="department-card"
+            data-status="active"
+        >
+
+            <div class="department-card-top">
+
+                <div class="large-department-icon garbage">
+                    🗑️
+                </div>
+
+                <span class="active-status">
+                    ● Active
+                </span>
+
+            </div>
+
+
+            <h2>
+                Sanitation Department
+            </h2>
+
+            <p>
+                Handles garbage collection,
+                waste management and cleanliness.
+            </p>
+
+
+            <div class="department-metrics">
+
+                <div>
+                    <span>OFFICERS</span>
+                    <strong>10</strong>
+                </div>
+
+                <div>
+                    <span>PENDING</span>
+                    <strong>42</strong>
+                </div>
+
+                <div>
+                    <span>RESOLVED</span>
+                    <strong>286</strong>
+                </div>
+
+            </div>
+
+
+            <div class="workload">
+
+                <div class="workload-label">
+
+                    <span>
+                        Workload
+                    </span>
+
+                    <strong>
+                        61%
+                    </strong>
+
+                </div>
+
+                <div class="workload-bar">
+
+                    <div
+                        class="workload-fill medium"
+                        style="width:61%"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="department-actions">
+
+                <button
+                    onclick="editDepartment('Sanitation Department')"
+                >
+                    ✏️ Edit
+                </button>
+
+                <button
+                    onclick="viewOfficers('Sanitation Department')"
+                >
+                    👨‍💼 Officers
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- WATER -->
+
+        <div
+            class="department-card"
+            data-status="active"
+        >
+
+            <div class="department-card-top">
+
+                <div class="large-department-icon water">
+                    💧
+                </div>
+
+                <span class="active-status">
+                    ● Active
+                </span>
+
+            </div>
+
+
+            <h2>
+                Water Supply Department
+            </h2>
+
+            <p>
+                Handles water leakage, supply problems
+                and pipeline maintenance.
+            </p>
+
+
+            <div class="department-metrics">
+
+                <div>
+                    <span>OFFICERS</span>
+                    <strong>8</strong>
+                </div>
+
+                <div>
+                    <span>PENDING</span>
+                    <strong>31</strong>
+                </div>
+
+                <div>
+                    <span>RESOLVED</span>
+                    <strong>198</strong>
+                </div>
+
+            </div>
+
+
+            <div class="workload">
+
+                <div class="workload-label">
+
+                    <span>
+                        Workload
+                    </span>
+
+                    <strong>
+                        48%
+                    </strong>
+
+                </div>
+
+                <div class="workload-bar">
+
+                    <div
+                        class="workload-fill low"
+                        style="width:48%"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="department-actions">
+
+                <button
+                    onclick="editDepartment('Water Supply Department')"
+                >
+                    ✏️ Edit
+                </button>
+
+                <button
+                    onclick="viewOfficers('Water Supply Department')"
+                >
+                    👨‍💼 Officers
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ELECTRICAL -->
+
+        <div
+            class="department-card"
+            data-status="active"
+        >
+
+            <div class="department-card-top">
+
+                <div class="large-department-icon electric">
+                    💡
+                </div>
+
+                <span class="active-status">
+                    ● Active
+                </span>
+
+            </div>
+
+
+            <h2>
+                Electrical Department
+            </h2>
+
+            <p>
+                Handles streetlights, electrical faults
+                and public lighting.
+            </p>
+
+
+            <div class="department-metrics">
+
+                <div>
+                    <span>OFFICERS</span>
+                    <strong>6</strong>
+                </div>
+
+                <div>
+                    <span>PENDING</span>
+                    <strong>29</strong>
+                </div>
+
+                <div>
+                    <span>RESOLVED</span>
+                    <strong>241</strong>
+                </div>
+
+            </div>
+
+
+            <div class="workload">
+
+                <div class="workload-label">
+
+                    <span>
+                        Workload
+                    </span>
+
+                    <strong>
+                        43%
+                    </strong>
+
+                </div>
+
+                <div class="workload-bar">
+
+                    <div
+                        class="workload-fill low"
+                        style="width:43%"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="department-actions">
+
+                <button
+                    onclick="editDepartment('Electrical Department')"
+                >
+                    ✏️ Edit
+                </button>
+
+                <button
+                    onclick="viewOfficers('Electrical Department')"
+                >
+                    👨‍💼 Officers
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- DRAINAGE -->
+
+        <div
+            class="department-card"
+            data-status="inactive"
+        >
+
+            <div class="department-card-top">
+
+                <div class="large-department-icon drainage">
+                    🚰
+                </div>
+
+                <span class="inactive-status">
+                    ● Inactive
+                </span>
+
+            </div>
+
+
+            <h2>
+                Drainage Department
+            </h2>
+
+            <p>
+                Handles drainage blockages,
+                flooding and sewer complaints.
+            </p>
+
+
+            <div class="department-metrics">
+
+                <div>
+                    <span>OFFICERS</span>
+                    <strong>4</strong>
+                </div>
+
+                <div>
+                    <span>PENDING</span>
+                    <strong>16</strong>
+                </div>
+
+                <div>
+                    <span>RESOLVED</span>
+                    <strong>117</strong>
+                </div>
+
+            </div>
+
+
+            <div class="workload">
+
+                <div class="workload-label">
+
+                    <span>
+                        Workload
+                    </span>
+
+                    <strong>
+                        32%
+                    </strong>
+
+                </div>
+
+                <div class="workload-bar">
+
+                    <div
+                        class="workload-fill low"
+                        style="width:32%"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="department-actions">
+
+                <button
+                    onclick="editDepartment('Drainage Department')"
+                >
+                    ✏️ Edit
+                </button>
+
+                <button
+                    onclick="viewOfficers('Drainage Department')"
+                >
+                    👨‍💼 Officers
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- ADD DEPARTMENT MODAL -->
+
+<div
+    class="department-modal"
+    id="departmentModal"
+>
+
+    <div class="department-modal-box">
+
+        <button
+            class="modal-close"
+            onclick="closeDepartmentModal()"
+        >
+            ×
+        </button>
+
+        <h2>
+            ➕ Add Department
+        </h2>
+
+        <p>
+            Create a new civic department.
+        </p>
+
+
+        <form id="departmentForm">
+
+            <label>
+                Department Name
+            </label>
+
+            <input
+                type="text"
+                id="newDepartmentName"
+                placeholder="Enter department name"
+                required
+            >
+
+
+            <label>
+                Department Category
+            </label>
+
+            <select id="newDepartmentCategory">
+
+                <option>
+                    Infrastructure
+                </option>
+
+                <option>
+                    Sanitation
+                </option>
+
+                <option>
+                    Water
+                </option>
+
+                <option>
+                    Electricity
+                </option>
+
+                <option>
+                    Other
+                </option>
+
+            </select>
+
+
+            <button
+                type="submit"
+                class="modal-add-btn"
+            >
+                Add Department
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="/js/department-management.js"></script>
+
+</body>
+
+</html>

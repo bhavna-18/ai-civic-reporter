@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Basic Admin Protection -->
+    <script>
+        // If already logged in as admin, directly open dashboard
+        const alreadyAdminLoggedIn =
+            sessionStorage.getItem("adminLoggedIn");
+
+        if (alreadyAdminLoggedIn === "true") {
+            window.location.replace("/admin-dashboard");
+        }
+    </script>
+</head>
+
+<body class="login-page admin-login-page">
+
+    <div class="login-container">
+
+        <!-- ================= LEFT SIDE ================= -->
+
+        <div class="login-info admin-info">
+
+            <div class="login-brand">
+                🚨 AI Civic Reporter
+            </div>
+
+            <h1>
+                City Officer<br>
+                Portal
+            </h1>
+
+            <p>
+                Manage citizen complaints, verify reports,
+                assign departments and monitor civic operations.
+            </p>
+
+            <div class="login-features">
+
+                <div class="login-feature">
+                    <span>📋</span>
+
+                    <div>
+                        <strong>Manage Complaints</strong>
+
+                        <small>
+                            View and manage citizen reports
+                        </small>
+                    </div>
+                </div>
+
+                <div class="login-feature">
+                    <span>🏢</span>
+
+                    <div>
+                        <strong>Department Management</strong>
+
+                        <small>
+                            Assign complaints to departments
+                        </small>
+                    </div>
+                </div>
+
+                <div class="login-feature">
+                    <span>📊</span>
+
+                    <div>
+                        <strong>Civic Analytics</strong>
+
+                        <small>
+                            Monitor city performance
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RIGHT SIDE ================= -->
+
+        <div class="login-card admin-card">
+
+            <div class="login-icon admin-login-icon">
+                🏛️
+            </div>
+
+            <h2>Admin Login</h2>
+
+            <p class="login-subtitle">
+                City Officer / Administrator Access
+            </p>
+
+
+            <!-- ================= EMAIL ================= -->
+
+            <div class="input-group">
+
+                <label>
+                    <i class="fa-solid fa-user-tie"></i>
+                    Officer ID / Email
+                </label>
+
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Enter officer email"
+                    autocomplete="email"
+                    required>
+
+            </div>
+
+
+            <!-- ================= PASSWORD ================= -->
+
+            <div class="input-group">
+
+                <label>
+                    <i class="fa-solid fa-lock"></i>
+                    Password
+                </label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required>
+
+                    <button
+                        type="button"
+                        onclick="toggleAdminPassword()">
+                        👁️
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= REMEMBER ME ================= -->
+
+            <div class="login-options">
+
+                <label class="remember">
+
+                    <input
+                        type="checkbox"
+                        id="adminRememberMe">
+
+                    <span>Remember me</span>
+
+                </label>
+
+                <a
+                    href="#"
+                    onclick="forgotAdminPassword(event)">
+                    Forgot Password?
+                </a>
+
+            </div>
+
+
+            <!-- ================= LOGIN BUTTON ================= -->
+
+            <button
+                type="button"
+                class="login-submit-btn admin-submit-btn"
+                id="adminLoginButton"
+                onclick="adminLogin()">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Login as Admin
+
+            </button>
+
+
+            <!-- ================= LOGIN MESSAGE ================= -->
+
+            <div
+                id="adminLoginMessage"
+                class="login-message">
+            </div>
+
+
+            <!-- ================= SECURITY ================= -->
+
+            <div class="admin-security">
+                🔒 Authorized personnel only
+            </div>
+
+
+            <!-- ================= BACK HOME ================= -->
+
+            <button
+                type="button"
+                class="back-home-btn"
+                onclick="window.location.href='/'">
+
+                ← Back to Home
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+        // =====================================================
+        // PASSWORD TOGGLE
+        // =====================================================
+
+        function toggleAdminPassword() {
+
+            const password =
+                document.getElementById("adminPassword");
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+            } else {
+
+                password.type = "password";
+
+            }
+        }
+
+
+        // =====================================================
+        // ADMIN LOGIN
+        // =====================================================
+
+        async function adminLogin() {
+
+            const email =
+                document
+                    .getElementById("adminEmail")
+                    .value
+                    .trim();
+
+            const password =
+                document
+                    .getElementById("adminPassword")
+                    .value;
+
+            const loginButton =
+                document.getElementById(
+                    "adminLoginButton"
+                );
+
+
+            // =================================================
+            // EMPTY CHECK
+            // =================================================
+
+            if (email === "" || password === "") {
+
+                showAdminMessage(
+                    "⚠️ Please enter Officer email and password.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            // =================================================
+            // EMAIL VALIDATION
+            // =================================================
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+
+                showAdminMessage(
+                    "⚠️ Please enter a valid email address.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            // =================================================
+            // DISABLE BUTTON
+            // =================================================
+
+            loginButton.disabled = true;
+
+            loginButton.innerHTML =
+                '<i class="fa-solid fa-spinner fa-spin"></i> Logging in...';
+
+
+            try {
+
+                // =============================================
+                // CALL SPRING BOOT LOGIN API
+                // =============================================
+
+                const response =
+                    await fetch("/api/users/login", {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            email: email,
+
+                            password: password
+
+                        })
+
+                    });
+
+
+                // =============================================
+                // READ RESPONSE
+                // =============================================
+
+                const result =
+                    await response
+                        .json()
+                        .catch(() => null);
+
+
+                // =============================================
+                // INVALID LOGIN
+                // =============================================
+
+                if (!response.ok) {
+
+                    let errorMessage =
+                        "Invalid email or password.";
+
+                    if (typeof result === "string") {
+
+                        errorMessage = result;
+
+                    } else if (
+                        result &&
+                        result.message
+                    ) {
+
+                        errorMessage = result.message;
+
+                    }
+
+                    showAdminMessage(
+                        "❌ " + errorMessage,
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                // =============================================
+                // ROLE CHECK
+                // =============================================
+
+                if (
+                    !result ||
+                    !result.role ||
+                    result.role.toUpperCase() !== "ADMIN"
+                ) {
+
+                    showAdminMessage(
+                        "❌ This account is not an Admin account.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                // =================================================
+                // IMPORTANT:
+                // CREATE ADMIN LOGIN SESSION
+                // =================================================
+
+                sessionStorage.setItem(
+                    "adminLoggedIn",
+                    "true"
+                );
+
+
+                // =================================================
+                // SAVE ADMIN USER INFORMATION
+                // =================================================
+
+                sessionStorage.setItem(
+                    "loggedInUser",
+                    JSON.stringify(result)
+                );
+
+                sessionStorage.setItem(
+                    "adminId",
+                    result.id || ""
+                );
+
+                sessionStorage.setItem(
+                    "adminName",
+                    result.name || ""
+                );
+
+                sessionStorage.setItem(
+                    "adminEmail",
+                    result.email || email
+                );
+
+                sessionStorage.setItem(
+                    "adminRole",
+                    result.role || "ADMIN"
+                );
+
+
+                // =================================================
+                // REMEMBER EMAIL
+                // =================================================
+
+                const rememberMe =
+                    document.getElementById(
+                        "adminRememberMe"
+                    ).checked;
+
+                if (rememberMe) {
+
+                    localStorage.setItem(
+                        "adminRememberedEmail",
+                        email
+                    );
+
+                } else {
+
+                    localStorage.removeItem(
+                        "adminRememberedEmail"
+                    );
+
+                }
+
+
+                // =================================================
+                // SUCCESS MESSAGE
+                // =================================================
+
+                showAdminMessage(
+                    "✅ Login successful! Opening Admin Dashboard...",
+                    "success"
+                );
+
+
+                // =================================================
+                // REDIRECT TO ADMIN DASHBOARD
+                // =================================================
+
+                setTimeout(function () {
+
+                    window.location.href =
+                        "/admin-dashboard";
+
+                }, 700);
+
+
+            } catch (error) {
+
+                console.error(
+                    "Admin login error:",
+                    error
+                );
+
+                showAdminMessage(
+                    "❌ Unable to connect to server. Please try again.",
+                    "error"
+                );
+
+            } finally {
+
+                loginButton.disabled = false;
+
+                loginButton.innerHTML =
+                    '<i class="fa-solid fa-shield-halved"></i> Login as Admin';
+
+            }
+
+        }
+
+
+        // =====================================================
+        // SHOW LOGIN MESSAGE
+        // =====================================================
+
+        function showAdminMessage(text, type) {
+
+            const message =
+                document.getElementById(
+                    "adminLoginMessage"
+                );
+
+            message.style.display = "block";
+
+            message.textContent = text;
+
+
+            if (type === "success") {
+
+                message.style.background =
+                    "#dcfce7";
+
+                message.style.color =
+                    "#166534";
+
+            } else {
+
+                message.style.background =
+                    "#fee2e2";
+
+                message.style.color =
+                    "#991b1b";
+
+            }
+
+        }
+
+
+        // =====================================================
+        // FORGOT PASSWORD
+        // =====================================================
+
+        function forgotAdminPassword(event) {
+
+            event.preventDefault();
+
+            alert(
+                "🔐 Admin password recovery module will be added later."
+            );
+
+        }
+
+
+        // =====================================================
+        // ENTER KEY LOGIN
+        // =====================================================
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter" &&
+                    document.activeElement.tagName !== "BUTTON"
+                ) {
+
+                    adminLogin();
+
+                }
+
+            }
+        );
+
+
+        // =====================================================
+        // REMEMBERED EMAIL
+        // =====================================================
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const rememberedEmail =
+                    localStorage.getItem(
+                        "adminRememberedEmail"
+                    );
+
+                if (rememberedEmail) {
+
+                    document.getElementById(
+                        "adminEmail"
+                    ).value = rememberedEmail;
+
+                    document.getElementById(
+                        "adminRememberMe"
+                    ).checked = true;
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

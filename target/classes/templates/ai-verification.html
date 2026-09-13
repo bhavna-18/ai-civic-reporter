@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Verification | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body class="report-page ai-verification-page">
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="report-navbar">
+
+    <div class="report-nav-inner">
+
+        <a href="/" class="report-brand">
+
+            <div class="report-brand-icon">
+                🚨
+            </div>
+
+            <div class="report-brand-text">
+
+                <h2>AI Civic Reporter</h2>
+
+                <span>
+                    Smart Cities • Better Tomorrow
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <nav class="report-nav-links">
+
+            <a href="/">
+                🏠 Home
+            </a>
+
+            <a href="/report" class="active">
+                🚨 Report Issue
+            </a>
+
+            <a href="/citizen-dashboard">
+                👤 Citizen
+            </a>
+
+            <a href="/report-details">
+                🗺️ Civic Intelligence
+            </a>
+
+            <a href="/admin-dashboard">
+                🏛️ Admin
+            </a>
+
+        </nav>
+
+
+        <a href="/user-login" class="report-login-btn">
+
+            <span>👤</span>
+            Login
+
+        </a>
+
+
+        <button
+            class="report-menu-btn"
+            type="button"
+            onclick="toggleAIMenu()">
+
+            ☰
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="aiMobileMenu"
+        class="report-mobile-menu">
+
+        <a href="/">
+            🏠 Home
+        </a>
+
+        <a href="/report" class="active">
+            🚨 Report Issue
+        </a>
+
+        <a href="/citizen-dashboard">
+            👤 Citizen
+        </a>
+
+        <a href="/report-details">
+            🗺️ Civic Intelligence
+        </a>
+
+        <a href="/admin-dashboard">
+            🏛️ Admin
+        </a>
+
+        <a href="/user-login">
+            👤 Login
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="report-container">
+
+
+    <!-- =====================================================
+         HEADING
+    ====================================================== -->
+
+    <section class="report-heading">
+
+        <div class="report-badge">
+
+            <span class="report-badge-dot"></span>
+
+            🤖 AI VERIFICATION
+
+        </div>
+
+
+        <h1>
+
+            AI is
+            <span>Analyzing</span>
+            your Report
+
+        </h1>
+
+
+        <p>
+
+            Our intelligent system is checking the evidence,
+            identifying the civic issue, detecting duplicates
+            and calculating its priority.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PROGRESS
+    ====================================================== -->
+
+    <section class="report-progress-wrapper">
+
+        <div class="report-progress">
+
+
+            <div class="progress-step completed">
+
+                <div class="progress-number">
+                    ✓
+                </div>
+
+                <span>
+                    Issue
+                </span>
+
+            </div>
+
+
+            <div class="progress-line active-line"></div>
+
+
+            <div class="progress-step completed">
+
+                <div class="progress-number">
+                    ✓
+                </div>
+
+                <span>
+                    Location
+                </span>
+
+            </div>
+
+
+            <div class="progress-line active-line"></div>
+
+
+            <div class="progress-step completed">
+
+                <div class="progress-number">
+                    ✓
+                </div>
+
+                <span>
+                    Evidence
+                </span>
+
+            </div>
+
+
+            <div class="progress-line active-line"></div>
+
+
+            <div class="progress-step active">
+
+                <div class="progress-number">
+                    4
+                </div>
+
+                <span>
+                    AI Analysis
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         AI CARD
+    ====================================================== -->
+
+    <section class="report-card ai-card">
+
+
+        <!-- AI HEADER -->
+
+        <div class="ai-analysis-header">
+
+
+            <div class="ai-animation">
+
+                <div class="ai-circle">
+                    🤖
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <h2 id="analysisTitle">
+                    AI Analysis in Progress
+                </h2>
+
+                <p id="analysisStatus">
+                    Examining your submitted evidence...
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             AI PROGRESS
+        ================================================== -->
+
+        <div class="ai-progress-container">
+
+            <div class="ai-progress-bar">
+
+                <div
+                    class="ai-progress-fill"
+                    id="aiProgress">
+                </div>
+
+            </div>
+
+
+            <div class="ai-progress-text">
+
+                <span>
+                    AI Processing
+                </span>
+
+                <strong id="progressPercent">
+                    0%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ANALYSIS STEPS
+        ================================================== -->
+
+        <div class="analysis-steps">
+
+
+            <!-- STEP 1 -->
+
+            <div
+                class="analysis-step"
+                id="step1">
+
+                <div class="step-icon">
+                    ⏳
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Image Analysis
+                    </strong>
+
+                    <p>
+                        Detecting objects and civic problems
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- STEP 2 -->
+
+            <div
+                class="analysis-step"
+                id="step2">
+
+                <div class="step-icon">
+                    ⏳
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Issue Classification
+                    </strong>
+
+                    <p>
+                        Identifying the type of complaint
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- STEP 3 -->
+
+            <div
+                class="analysis-step"
+                id="step3">
+
+                <div class="step-icon">
+                    ⏳
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Duplicate Detection
+                    </strong>
+
+                    <p>
+                        Checking nearby existing reports
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- STEP 4 -->
+
+            <div
+                class="analysis-step"
+                id="step4">
+
+                <div class="step-icon">
+                    ⏳
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Priority Calculation
+                    </strong>
+
+                    <p>
+                        Calculating urgency level
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RESULT
+        ================================================== -->
+
+        <div
+            class="ai-result"
+            id="aiResult"
+            style="display:none;">
+
+
+            <!-- RESULT HEADER -->
+
+            <div class="result-heading">
+
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+
+                <div>
+
+                    <h2>
+                        AI Verification Complete
+                    </h2>
+
+                    <p>
+                        Your complaint has been analyzed successfully.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RESULT GRID -->
+
+            <div class="result-grid">
+
+
+                <!-- DETECTED ISSUE -->
+
+                <div class="result-box">
+
+                    <span>
+                        Detected Issue
+                    </span>
+
+                    <strong id="detectedIssue">
+                        Pothole
+                    </strong>
+
+                </div>
+
+
+
+                <!-- CONFIDENCE -->
+
+                <div class="result-box">
+
+                    <span>
+                        AI Confidence
+                    </span>
+
+                    <strong id="confidence">
+                        94%
+                    </strong>
+
+                </div>
+
+
+
+                <!-- DUPLICATE -->
+
+                <div class="result-box">
+
+                    <span>
+                        Duplicate Check
+                    </span>
+
+                    <strong
+                        id="duplicateResult"
+                        class="verified">
+
+                        ✓ No Duplicate
+
+                    </strong>
+
+                </div>
+
+
+
+                <!-- PRIORITY -->
+
+                <div class="result-box priority-box">
+
+                    <span>
+                        Priority Score
+                    </span>
+
+                    <strong
+                        id="priorityResult"
+                        class="high-priority">
+
+                        HIGH
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 EXTRA AI DETAILS
+            ================================================== -->
+
+            <div class="ai-extra-details">
+
+
+                <div class="ai-detail-item">
+
+                    <span>
+                        🏷️ Category
+                    </span>
+
+                    <strong id="verificationCategory">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="ai-detail-item">
+
+                    <span>
+                        ⚠️ Risk Level
+                    </span>
+
+                    <strong id="verificationRisk">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="ai-detail-item">
+
+                    <span>
+                        🏙️ Environment
+                    </span>
+
+                    <strong id="detectedEnvironment">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="ai-detail-item">
+
+                    <span>
+                        🔍 Verification
+                    </span>
+
+                    <strong id="verificationStatusValue">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 AI SUMMARY
+            ================================================== -->
+
+            <div class="ai-summary">
+
+                <strong>
+                    🤖 AI Summary
+                </strong>
+
+
+                <p id="aiSummaryText">
+
+                    The uploaded evidence is being analyzed
+                    by the AI verification system.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             ACTIONS
+        ================================================== -->
+
+        <div class="form-actions">
+
+
+            <a
+                href="/evidence"
+                class="back-btn">
+
+                <span>←</span>
+
+                Back
+
+            </a>
+
+
+            <button
+                type="button"
+                class="next-btn"
+                id="previewBtn"
+                style="display:none;"
+                onclick="goToPreview()">
+
+                Continue to Report Preview
+
+                <span>→</span>
+
+            </button>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="report-footer">
+
+    <div class="report-footer-inner">
+
+        <div>
+
+            <strong>
+                🚨 AI Civic Reporter
+            </strong>
+
+            <span>
+                Smart Cities • Better Tomorrow
+            </span>
+
+        </div>
+
+
+        <p>
+            © 2026 AI Civic Reporter. All Rights Reserved.
+        </p>
+
+
+        <div class="report-footer-status">
+
+            <span></span>
+
+            AI System Online
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="/js/ai-verification.js"></script>
+
+
+<script>
+
+function toggleAIMenu() {
+
+    const menu =
+        document.getElementById("aiMobileMenu");
+
+    if (!menu) return;
+
+    menu.classList.toggle("show");
+
+}
+
+</script>
+
+
+</body>
+
+</html>

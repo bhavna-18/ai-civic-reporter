@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Support Center | AI Civic Reporter</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🚨 AI Civic Reporter
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/report">Report Issue</a>
+
+        <a href="/citizen-dashboard">Dashboard</a>
+
+        <a href="/my-reports">My Reports</a>
+
+        <a href="/support" class="active">
+            ❓ Support
+        </a>
+
+    </div>
+
+    <a href="/user-login" class="login-btn">
+        Login
+    </a>
+
+    <!-- MOBILE HAMBURGER -->
+    <button
+        type="button"
+        class="mobile-menu-btn"
+        id="mobileMenuBtn"
+        aria-label="Open menu"
+        aria-expanded="false">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+</nav>
+<!-- =========================
+     SUPPORT PAGE
+========================= -->
+
+<main class="support-page">
+
+    <section class="support-header">
+
+        <div class="support-badge">
+            🛟 AI Civic Reporter Support
+        </div>
+
+        <h1>
+            How Can We
+            <span>Help You?</span>
+        </h1>
+
+        <p>
+            Find answers, learn how the AI Civic Reporter system works,
+            understand the complaint reporting process, or contact our
+            support team for assistance.
+        </p>
+
+    </section>
+
+
+    <div class="support-container">
+
+        <!-- SUPPORT CARDS -->
+
+        <section class="support-grid">
+
+            <div class="support-card">
+
+                <div class="support-icon">
+                    ❓
+                </div>
+
+                <h3>Help Center</h3>
+
+                <p>
+                    Find useful information about using AI Civic Reporter
+                    and managing your civic complaints.
+                </p>
+
+            </div>
+
+
+            <div class="support-card">
+
+                <div class="support-icon">
+                    📝
+                </div>
+
+                <h3>How to Report an Issue</h3>
+
+                <p>
+                    Learn how to select a civic issue, add its location,
+                    upload evidence and submit your complaint.
+                </p>
+
+            </div>
+
+
+            <div class="support-card">
+
+                <div class="support-icon">
+                    🤖
+                </div>
+
+                <h3>AI Verification</h3>
+
+                <p>
+                    Understand how AI analyzes uploaded evidence and
+                    identifies the civic issue category and priority.
+                </p>
+
+            </div>
+
+
+            <div class="support-card">
+
+                <div class="support-icon">
+                    📍
+                </div>
+
+                <h3>Track Complaint</h3>
+
+                <p>
+                    Check your complaint progress from Pending and
+                    Assigned through In Progress to Resolved.
+                </p>
+
+            </div>
+
+
+            <div class="support-card">
+
+                <div class="support-icon">
+                    🔐
+                </div>
+
+                <h3>Login & Account Help</h3>
+
+                <p>
+                    Get help with citizen login and understand how
+                    users can access their civic reports.
+                </p>
+
+            </div>
+
+
+            <div class="support-card">
+
+                <div class="support-icon">
+                    🚨
+                </div>
+
+                <h3>Technical Problem</h3>
+
+                <p>
+                    Facing a technical problem? Contact support and
+                    describe the issue so it can be reviewed.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FAQ -->
+
+        <section class="faq-section">
+
+            <div class="section-title">
+
+                <h2>Frequently Asked Questions</h2>
+
+                <p>
+                    Quick answers to common questions
+                </p>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span>
+                        How can I report a civic problem?
+                    </span>
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Open the Report Issue page, select the appropriate
+                        civic category, provide the problem description,
+                        add the location and upload supporting evidence.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span>
+                        What does AI Verification do?
+                    </span>
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        The AI verification system analyzes the uploaded
+                        evidence and generates information such as the
+                        detected issue, category, confidence, priority
+                        and summary.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span>
+                        How can I track my complaint?
+                    </span>
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        After submitting a complaint, you can open My Reports
+                        or Report Tracking to view its current status and
+                        progress.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span>
+                        What types of civic problems can be reported?
+                    </span>
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        The system supports common civic problems such as
+                        potholes, garbage, water-related problems,
+                        streetlight issues and other civic concerns.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    <span>
+                        What should I do if I face a technical problem?
+                    </span>
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Use the Contact Support option below and provide
+                        a clear description of the technical problem.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT -->
+
+        <section class="support-cta">
+
+            <h2>
+                Still Need Help?
+            </h2>
+
+            <p>
+                Our support team can help you understand the reporting
+                process or resolve a technical problem with the system.
+            </p>
+
+            <button
+                class="support-btn"
+                onclick="openSupportModal()">
+
+                💬 Contact Support
+
+            </button>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- =========================
+     SUPPORT MODAL
+========================= -->
+
+<div
+    class="support-modal"
+    id="supportModal">
+
+    <div class="support-modal-box">
+
+        <div class="modal-header">
+
+            <h3>
+                💬 Contact Support
+            </h3>
+
+            <button
+                class="close-modal"
+                onclick="closeSupportModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="supportForm">
+
+            <div class="support-form-group">
+
+                <label>
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="supportName"
+                    placeholder="Enter your name"
+                    required>
+
+            </div>
+
+
+            <div class="support-form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="supportEmail"
+                    placeholder="Enter your email"
+                    required>
+
+            </div>
+
+
+            <div class="support-form-group">
+
+                <label>
+                    Problem
+                </label>
+
+                <textarea
+                    id="supportMessage"
+                    placeholder="Describe your problem..."
+                    required></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="support-btn">
+
+                🚀 Send Request
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer class="modern-footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+                🚨
+            </div>
+
+            <h2>AI Civic Reporter</h2>
+
+            <p>
+                Smart Cities • Better Tomorrow
+            </p>
+
+            <p class="footer-description">
+                AI Civic Reporter is a smart platform that helps citizens
+                report civic problems and enables authorities to analyze,
+                prioritize and resolve them efficiently.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Quick Links</h3>
+
+            <a href="/">🏠 Home</a>
+
+            <a href="/report">📝 Report an Issue</a>
+
+            <a href="/citizen-dashboard">👤 Citizen Dashboard</a>
+
+            <a href="/my-reports">📋 My Reports</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Civic Intelligence</h3>
+
+            <a href="#">🗺️ Live Civic Map</a>
+
+            <a href="#">📍 Nearby Problems</a>
+
+            <a href="/ai-verification">🤖 AI Verification</a>
+
+            <a href="#">📊 Civic Analytics</a>
+
+        </div>
+
+
+        <div class="footer-column support-column">
+
+            <h3>Support</h3>
+
+            <a href="/support">❓ Help Center</a>
+
+            <a href="/support">💬 FAQs</a>
+
+            <a href="/support">📞 Contact Support</a>
+
+            <a href="/support">🚨 Technical Help</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026
+            <strong>AI Civic Reporter</strong>.
+            All Rights Reserved.
+        </p>
+
+        <div class="footer-status">
+
+            <span class="status-dot"></span>
+
+            AI System Online
+
+        </div>
+
+        <div class="footer-social">
+
+            <a href="#">f</a>
+
+            <a href="#">◎</a>
+
+            <a href="#">in</a>
+
+            <a href="#">𝕏</a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script th:src="@{/js/support.js}"></script>
+
+</body>
+</html>

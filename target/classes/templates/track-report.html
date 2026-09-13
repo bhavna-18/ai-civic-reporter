@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Track Complaint | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body class="report-page">
+
+
+<header class="navbar">
+
+    <div class="logo-area">
+
+        <div class="logo-icon">
+            🚨
+        </div>
+
+        <div>
+            <h2>AI Civic Reporter</h2>
+            <p>Smart Cities • Better Tomorrow</p>
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="/" class="nav-link">
+            🏠 Home
+        </a>
+
+        <a href="/report" class="nav-link">
+            🚨 Report Issue
+        </a>
+
+        <a href="/citizen-dashboard" class="nav-link">
+            👤 Dashboard
+        </a>
+
+        <a href="#" class="nav-link">
+            🗺️ Civic Intelligence
+        </a>
+
+        <a href="#" class="nav-link">
+            🏛️ Admin
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="tracking-container">
+
+
+    <!-- HEADER -->
+
+    <section class="tracking-header">
+
+        <div>
+
+            <span class="tracking-badge">
+                📍 Complaint Tracking
+            </span>
+
+            <h1>
+                Track Your <span>Complaint</span>
+            </h1>
+
+            <p>
+                Follow the real-time progress of your civic complaint.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <section class="tracking-search-card">
+
+        <div class="tracking-search">
+
+            <span>🔎</span>
+
+            <input
+                type="text"
+                id="complaintSearch"
+                value="CIVIC-2026-4821"
+                placeholder="Enter Complaint ID"
+            >
+
+            <button onclick="trackComplaint()">
+                Track
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMPLAINT SUMMARY -->
+
+    <section class="tracking-summary-card">
+
+        <div class="tracking-summary-main">
+
+            <div class="tracking-issue-icon">
+                🛣️
+            </div>
+
+            <div>
+
+                <span class="tracking-label">
+                    COMPLAINT ID
+                </span>
+
+                <h2 id="trackingComplaintId">
+                    CIVIC-2026-4821
+                </h2>
+
+                <p>
+                    Road Pothole • Main Road
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="tracking-current-status">
+
+            <span>
+                CURRENT STATUS
+            </span>
+
+            <strong>
+                🔄 In Progress
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+
+    <section class="tracking-card">
+
+        <div class="tracking-card-header">
+
+            <div>
+
+                <h2>
+                    📊 Complaint Progress
+                </h2>
+
+                <p>
+                    Current progress of your complaint
+                </p>
+
+            </div>
+
+            <span class="progress-percent">
+                75%
+            </span>
+
+        </div>
+
+
+        <div class="progress-bar">
+
+            <div class="progress-fill"></div>
+
+        </div>
+
+
+        <div class="progress-labels">
+
+            <span>
+                Submitted
+            </span>
+
+            <span>
+                Verified
+            </span>
+
+            <span>
+                Assigned
+            </span>
+
+            <span>
+                In Progress
+            </span>
+
+            <span>
+                Resolved
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- TIMELINE -->
+
+    <section class="tracking-card">
+
+        <div class="tracking-card-header">
+
+            <div>
+
+                <h2>
+                    🕐 Status Timeline
+                </h2>
+
+                <p>
+                    Complete history of this complaint
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="tracking-timeline">
+
+
+            <!-- 1 -->
+
+            <div class="tracking-step completed">
+
+                <div class="tracking-dot">
+                    ✓
+                </div>
+
+                <div class="tracking-content">
+
+                    <div class="tracking-step-title">
+
+                        <strong>
+                            Complaint Submitted
+                        </strong>
+
+                        <span>
+                            Completed
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Your complaint was successfully submitted.
+                    </p>
+
+                    <small>
+                        13 Aug 2026 • 09:42 AM
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- 2 -->
+
+            <div class="tracking-step completed">
+
+                <div class="tracking-dot">
+                    ✓
+                </div>
+
+                <div class="tracking-content">
+
+                    <div class="tracking-step-title">
+
+                        <strong>
+                            AI Verification
+                        </strong>
+
+                        <span>
+                            Completed
+                        </span>
+
+                    </div>
+
+                    <p>
+                        AI analyzed the evidence and verified the
+                        complaint as genuine.
+                    </p>
+
+                    <small>
+                        13 Aug 2026 • 09:43 AM
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- 3 -->
+
+            <div class="tracking-step completed">
+
+                <div class="tracking-dot">
+                    ✓
+                </div>
+
+                <div class="tracking-content">
+
+                    <div class="tracking-step-title">
+
+                        <strong>
+                            Department Assigned
+                        </strong>
+
+                        <span>
+                            Completed
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Road & Transport Department has been assigned.
+                    </p>
+
+                    <small>
+                        13 Aug 2026 • 10:15 AM
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- 4 -->
+
+            <div class="tracking-step active">
+
+                <div class="tracking-dot">
+                    🔄
+                </div>
+
+                <div class="tracking-content">
+
+                    <div class="tracking-step-title">
+
+                        <strong>
+                            Work In Progress
+                        </strong>
+
+                        <span>
+                            Current
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Department officials are currently working
+                        on the reported issue.
+                    </p>
+
+                    <small>
+                        Started today • 02:30 PM
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- 5 -->
+
+            <div class="tracking-step">
+
+                <div class="tracking-dot">
+                    ○
+                </div>
+
+                <div class="tracking-content">
+
+                    <div class="tracking-step-title">
+
+                        <strong>
+                            Complaint Resolved
+                        </strong>
+
+                        <span>
+                            Pending
+                        </span>
+
+                    </div>
+
+                    <p>
+                        The complaint will be marked resolved after
+                        the authority completes the work.
+                    </p>
+
+                    <small>
+                        Waiting for completion
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- DEPARTMENT -->
+
+    <section class="tracking-card department-tracking-card">
+
+        <div class="department-track-icon">
+            🏛️
+        </div>
+
+        <div class="department-track-info">
+
+            <span>
+                ASSIGNED DEPARTMENT
+            </span>
+
+            <strong>
+                Road & Transport Department
+            </strong>
+
+            <p>
+                Municipal Corporation
+            </p>
+
+        </div>
+
+        <div class="department-track-right">
+
+            <span>
+                PRIORITY
+            </span>
+
+            <strong>
+                🔥 HIGH • 82/100
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- ACTIONS -->
+
+    <section class="tracking-actions">
+
+        <a
+            href="/report-details"
+            class="tracking-secondary"
+        >
+            ← Report Details
+        </a>
+
+        <a
+            href="/my-reports"
+            class="tracking-primary"
+        >
+            📋 My Reports
+            <span>→</span>
+        </a>
+
+    </section>
+
+
+</main>
+
+
+<script src="/js/track-report.js"></script>
+
+</body>
+
+</html>

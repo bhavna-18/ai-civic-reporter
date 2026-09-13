@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- =====================================================
+         BASIC ADMIN PROTECTION
+         ===================================================== -->
+    <script src="/js/admin-protection.js"></script>
+
+</head>
+
+
+<body class="admin-dashboard-page">
+
+
+<!-- =========================================================
+     NAVBAR
+     ========================================================= -->
+
+<header class="dashboard-navbar">
+
+    <!-- BRAND -->
+
+    <div class="brand-area">
+
+        <div class="brand-icon">
+            🚨
+        </div>
+
+        <div>
+
+            <h2>AI Civic Reporter</h2>
+
+            <span>
+                Smart Cities • Better Tomorrow
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- DESKTOP NAVIGATION -->
+
+    <nav id="adminNav">
+
+        <a href="/">
+            🏠 Home
+        </a>
+
+        <a href="/report">
+            🚨 Report Issue
+        </a>
+
+        <a href="/citizen-dashboard">
+            👤 Citizen
+        </a>
+
+        <a href="/admin-dashboard" class="active">
+            🏛️ Admin
+        </a>
+
+        <!-- LOGOUT -->
+
+        <button
+            type="button"
+            class="admin-logout-btn"
+            onclick="adminLogout()">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </nav>
+
+
+    <!-- MOBILE MENU BUTTON -->
+
+    <button
+        type="button"
+        class="admin-menu-btn"
+        id="adminMenuBtn"
+        aria-label="Open navigation"
+        aria-expanded="false">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<main class="admin-main">
+
+
+    <!-- =====================================================
+         WELCOME HEADER
+         ===================================================== -->
+
+    <section class="admin-welcome">
+
+        <div>
+
+            <span class="admin-badge">
+                🛡️ CITY OFFICER PORTAL
+            </span>
+
+            <h1>
+                Welcome back,
+                <span id="adminWelcomeName">
+                    Administrator!
+                </span>
+            </h1>
+
+            <p>
+                Monitor, verify and manage civic complaints
+                across the city.
+            </p>
+
+        </div>
+
+
+        <!-- ADMIN PROFILE -->
+
+        <div class="admin-profile">
+
+            <div class="admin-avatar">
+                👨‍💼
+            </div>
+
+            <div>
+
+                <strong id="adminProfileName">
+                    City Officer
+                </strong>
+
+                <small id="adminProfileRole">
+                    Administrator
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         STATISTICS
+         ===================================================== -->
+
+    <section class="admin-stats">
+
+
+        <!-- TOTAL -->
+
+        <div class="admin-stat-card">
+
+            <div class="stat-icon total-icon">
+                📋
+            </div>
+
+            <div>
+
+                <span>Total Complaints</span>
+
+                <strong id="adminTotal">
+                    248
+                </strong>
+
+                <small>
+                    All reported issues
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- PENDING -->
+
+        <div class="admin-stat-card">
+
+            <div class="stat-icon pending-icon">
+                ⏳
+            </div>
+
+            <div>
+
+                <span>Pending</span>
+
+                <strong id="adminPending">
+                    42
+                </strong>
+
+                <small>
+                    Awaiting verification
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- VERIFICATION -->
+
+        <div class="admin-stat-card">
+
+            <div class="stat-icon verify-icon">
+                🔍
+            </div>
+
+            <div>
+
+                <span>Under Verification</span>
+
+                <strong id="adminVerify">
+                    18
+                </strong>
+
+                <small>
+                    Being reviewed
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- IN PROGRESS -->
+
+        <div class="admin-stat-card">
+
+            <div class="stat-icon progress-icon">
+                🔧
+            </div>
+
+            <div>
+
+                <span>In Progress</span>
+
+                <strong id="adminProgress">
+                    67
+                </strong>
+
+                <small>
+                    Work in progress
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESOLVED -->
+
+        <div class="admin-stat-card">
+
+            <div class="stat-icon resolved-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <span>Resolved</span>
+
+                <strong id="adminResolved">
+                    121
+                </strong>
+
+                <small>
+                    Successfully resolved
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- HIGH PRIORITY -->
+
+        <div class="admin-stat-card">
+
+            <div class="stat-icon priority-icon">
+                🚨
+            </div>
+
+            <div>
+
+                <span>High Priority</span>
+
+                <strong id="adminPriority">
+                    15
+                </strong>
+
+                <small>
+                    Requires attention
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CONTENT GRID
+         ===================================================== -->
+
+    <section class="admin-content-grid">
+
+
+        <!-- =================================================
+             RECENT COMPLAINTS
+             ================================================= -->
+
+        <div class="admin-panel complaints-panel">
+
+            <div class="panel-heading">
+
+                <div>
+
+                    <h2>
+                        📋 Recent Complaints
+                    </h2>
+
+                    <p>
+                        Latest citizen reports
+                    </p>
+
+                </div>
+
+                <a href="/all-complaints">
+                    View All →
+                </a>
+
+            </div>
+
+
+            <div class="complaint-table">
+
+
+                <div class="table-row table-header">
+
+                    <span>
+                        Complaint
+                    </span>
+
+                    <span>
+                        Category
+                    </span>
+
+                    <span>
+                        Location
+                    </span>
+
+                    <span>
+                        Status
+                    </span>
+
+                </div>
+
+
+                <!-- COMPLAINT 1 -->
+
+                <div class="table-row">
+
+                    <div class="complaint-name">
+
+                        <span>
+                            🕳️
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Road Pothole
+                            </strong>
+
+                            <small>
+                                CIVIC-2026-4821
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <span>
+                        Pothole
+                    </span>
+
+                    <span>
+                        Main Road
+                    </span>
+
+                    <span class="status progress">
+                        In Progress
+                    </span>
+
+                </div>
+
+
+                <!-- COMPLAINT 2 -->
+
+                <div class="table-row">
+
+                    <div class="complaint-name">
+
+                        <span>
+                            🗑️
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Garbage Overflow
+                            </strong>
+
+                            <small>
+                                CIVIC-2026-3914
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <span>
+                        Garbage
+                    </span>
+
+                    <span>
+                        Market Area
+                    </span>
+
+                    <span class="status resolved">
+                        Resolved
+                    </span>
+
+                </div>
+
+
+                <!-- COMPLAINT 3 -->
+
+                <div class="table-row">
+
+                    <div class="complaint-name">
+
+                        <span>
+                            💡
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Streetlight Issue
+                            </strong>
+
+                            <small>
+                                CIVIC-2026-2748
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <span>
+                        Street Light
+                    </span>
+
+                    <span>
+                        Station Road
+                    </span>
+
+                    <span class="status pending">
+                        Pending
+                    </span>
+
+                </div>
+
+
+                <!-- COMPLAINT 4 -->
+
+                <div class="table-row">
+
+                    <div class="complaint-name">
+
+                        <span>
+                            💧
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Water Leakage
+                            </strong>
+
+                            <small>
+                                CIVIC-2026-1832
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <span>
+                        Water
+                    </span>
+
+                    <span>
+                        Shivaji Nagar
+                    </span>
+
+                    <span class="status resolved">
+                        Resolved
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+             ================================================= -->
+
+        <div class="admin-panel quick-panel">
+
+            <div class="panel-heading">
+
+                <div>
+
+                    <h2>
+                        ⚡ Quick Actions
+                    </h2>
+
+                    <p>
+                        Manage civic operations
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-actions">
+
+
+                <!-- ALL COMPLAINTS -->
+
+                <a
+                    href="/all-complaints"
+                    class="admin-action">
+
+                    <span>
+                        📋
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            All Complaints
+                        </strong>
+
+                        <small>
+                            View all citizen reports
+                        </small>
+
+                    </div>
+
+                    <b>
+                        →
+                    </b>
+
+                </a>
+
+
+                <!-- VERIFICATION -->
+
+                <a
+                    href="/complaint-verification"
+                    class="admin-action">
+
+                    <span>
+                        🔍
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Complaint Verification
+                        </strong>
+
+                        <small>
+                            Verify submitted complaints
+                        </small>
+
+                    </div>
+
+                    <b>
+                        →
+                    </b>
+
+                </a>
+
+
+                <!-- ASSIGN -->
+
+                <a
+                    href="/assign-complaint"
+                    class="admin-action">
+
+                    <span>
+                        👨‍💼
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Assign Complaint
+                        </strong>
+
+                        <small>
+                            Assign issues to departments
+                        </small>
+
+                    </div>
+
+                    <b>
+                        →
+                    </b>
+
+                </a>
+
+
+                <!-- DEPARTMENT -->
+
+                <a
+                    href="/department-management"
+                    class="admin-action">
+
+                    <span>
+                        🏢
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Departments
+                        </strong>
+
+                        <small>
+                            Manage civic departments
+                        </small>
+
+                    </div>
+
+                    <b>
+                        →
+                    </b>
+
+                </a>
+
+
+                <!-- STATUS -->
+
+                <a
+                    href="/status-management"
+                    class="admin-action">
+
+                    <span>
+                        🔄
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Status Management
+                        </strong>
+
+                        <small>
+                            Update complaint status
+                        </small>
+
+                    </div>
+
+                    <b>
+                        →
+                    </b>
+
+                </a>
+
+
+                <!-- OFFICERS -->
+
+                <a
+                    href="/officer-management"
+                    class="admin-action">
+
+                    <span>
+                        👮
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Officer Management
+                        </strong>
+
+                        <small>
+                            Manage city officers
+                        </small>
+
+                    </div>
+
+                    <b>
+                        →
+                    </b>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ANALYTICS / OVERVIEW
+         ===================================================== -->
+
+    <section class="admin-bottom-grid">
+
+
+        <!-- =================================================
+             COMPLAINT OVERVIEW
+             ================================================= -->
+
+        <div class="admin-panel">
+
+            <div class="panel-heading">
+
+                <div>
+
+                    <h2>
+                        📊 Complaint Overview
+                    </h2>
+
+                    <p>
+                        Current complaint distribution
+                    </p>
+
+                </div>
+
+                <a href="#">
+                    Analytics →
+                </a>
+
+            </div>
+
+
+            <div class="overview-bars">
+
+
+                <!-- PENDING -->
+
+                <div class="overview-item">
+
+                    <div>
+
+                        <span>
+                            Pending
+                        </span>
+
+                        <strong>
+                            42
+                        </strong>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <span style="width:35%"></span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VERIFICATION -->
+
+                <div class="overview-item">
+
+                    <div>
+
+                        <span>
+                            Under Verification
+                        </span>
+
+                        <strong>
+                            18
+                        </strong>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <span style="width:20%"></span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROGRESS -->
+
+                <div class="overview-item">
+
+                    <div>
+
+                        <span>
+                            In Progress
+                        </span>
+
+                        <strong>
+                            67
+                        </strong>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <span style="width:55%"></span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RESOLVED -->
+
+                <div class="overview-item">
+
+                    <div>
+
+                        <span>
+                            Resolved
+                        </span>
+
+                        <strong>
+                            121
+                        </strong>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <span style="width:85%"></span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SYSTEM STATUS
+             ================================================= -->
+
+        <div class="admin-panel system-panel">
+
+            <div class="panel-heading">
+
+                <div>
+
+                    <h2>
+                        🤖 AI System Status
+                    </h2>
+
+                    <p>
+                        Platform health
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI VERIFICATION -->
+
+            <div class="system-status-item">
+
+                <span>
+                    🟢
+                </span>
+
+                <div>
+
+                    <strong>
+                        AI Verification
+                    </strong>
+
+                    <small>
+                        System operational
+                    </small>
+
+                </div>
+
+                <b>
+                    Online
+                </b>
+
+            </div>
+
+
+            <!-- COMPLAINT SERVICE -->
+
+            <div class="system-status-item">
+
+                <span>
+                    🟢
+                </span>
+
+                <div>
+
+                    <strong>
+                        Complaint Service
+                    </strong>
+
+                    <small>
+                        Running normally
+                    </small>
+
+                </div>
+
+                <b>
+                    Online
+                </b>
+
+            </div>
+
+
+            <!-- NOTIFICATION -->
+
+            <div class="system-status-item">
+
+                <span>
+                    🟢
+                </span>
+
+                <div>
+
+                    <strong>
+                        Notification Service
+                    </strong>
+
+                    <small>
+                        All systems active
+                    </small>
+
+                </div>
+
+                <b>
+                    Online
+                </b>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script src="/js/admin-dashboard.js"></script>
+
+
+<script>
+
+    // =========================================================
+    // ADMIN INFORMATION
+    // =========================================================
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const adminName =
+                sessionStorage.getItem("adminName");
+
+            const adminRole =
+                sessionStorage.getItem("adminRole");
+
+            const adminEmail =
+                sessionStorage.getItem("adminEmail");
+
+
+            // -----------------------------------------------
+            // ADMIN NAME
+            // -----------------------------------------------
+
+            if (adminName) {
+
+                document.getElementById(
+                    "adminWelcomeName"
+                ).textContent =
+                    adminName + "!";
+
+                document.getElementById(
+                    "adminProfileName"
+                ).textContent =
+                    adminName;
+
+            }
+
+
+            // -----------------------------------------------
+            // ADMIN ROLE
+            // -----------------------------------------------
+
+            if (adminRole) {
+
+                document.getElementById(
+                    "adminProfileRole"
+                ).textContent =
+                    adminRole === "ADMIN"
+                        ? "Administrator"
+                        : adminRole;
+
+            }
+
+        }
+    );
+
+
+
+    // =========================================================
+    // ADMIN LOGOUT
+    // =========================================================
+
+    function adminLogout() {
+
+        const confirmLogout =
+            confirm(
+                "Are you sure you want to logout from Admin Portal?"
+            );
+
+        if (!confirmLogout) {
+            return;
+        }
+
+
+        // -----------------------------------------------
+        // CLEAR ADMIN SESSION
+        // -----------------------------------------------
+
+        sessionStorage.removeItem(
+            "adminLoggedIn"
+        );
+
+        sessionStorage.removeItem(
+            "loggedInUser"
+        );
+
+        sessionStorage.removeItem(
+            "adminId"
+        );
+
+        sessionStorage.removeItem(
+            "adminName"
+        );
+
+        sessionStorage.removeItem(
+            "adminEmail"
+        );
+
+        sessionStorage.removeItem(
+            "adminRole"
+        );
+
+
+        // -----------------------------------------------
+        // REDIRECT
+        // -----------------------------------------------
+
+        window.location.href =
+            "/admin-login";
+
+    }
+
+
+
+    // =========================================================
+    // MOBILE ADMIN NAVBAR
+    // =========================================================
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const menuBtn =
+                document.getElementById(
+                    "adminMenuBtn"
+                );
+
+            const navbar =
+                document.querySelector(
+                    ".dashboard-navbar"
+                );
+
+            const nav =
+                document.getElementById(
+                    "adminNav"
+                );
+
+
+            if (!menuBtn || !navbar || !nav) {
+                return;
+            }
+
+
+            // -----------------------------------------------
+            // OPEN / CLOSE MENU
+            // -----------------------------------------------
+
+            menuBtn.addEventListener(
+                "click",
+                function (event) {
+
+                    event.stopPropagation();
+
+                    navbar.classList.toggle(
+                        "mobile-menu-open"
+                    );
+
+                    const isOpen =
+                        navbar.classList.contains(
+                            "mobile-menu-open"
+                        );
+
+                    menuBtn.setAttribute(
+                        "aria-expanded",
+                        isOpen
+                            ? "true"
+                            : "false"
+                    );
+
+                }
+            );
+
+
+            // -----------------------------------------------
+            // CLOSE AFTER LINK CLICK
+            // -----------------------------------------------
+
+            nav.querySelectorAll("a").forEach(
+                function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            navbar.classList.remove(
+                                "mobile-menu-open"
+                            );
+
+                            menuBtn.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+            // -----------------------------------------------
+            // CLOSE OUTSIDE CLICK
+            // -----------------------------------------------
+
+            document.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        !navbar.contains(
+                            event.target
+                        )
+                    ) {
+
+                        navbar.classList.remove(
+                            "mobile-menu-open"
+                        );
+
+                        menuBtn.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>

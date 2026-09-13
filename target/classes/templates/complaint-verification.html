@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Complaint Verification | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        /* Dynamic evidence */
+        .evidence-image {
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 14px;
+        }
+
+        .evidence-image img,
+        .evidence-image video {
+            width: 100%;
+            max-height: 360px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .evidence-placeholder {
+            width: 100%;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 55px;
+        }
+
+        .evidence-placeholder span {
+            font-size: 15px;
+        }
+
+        .verification-loading {
+            padding: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .verification-empty {
+            padding: 35px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .verification-error {
+            padding: 20px;
+            text-align: center;
+            color: #b91c1c;
+            font-weight: 600;
+        }
+
+        .queue-item.hidden {
+            display: none;
+        }
+
+        .action-disabled {
+            opacity: 0.55;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="admin-page">
+
+<header class="navbar">
+
+    <div class="logo-area">
+
+        <div class="logo-icon">
+            🚨
+        </div>
+
+        <div>
+            <h2>AI Civic Reporter</h2>
+            <p>Smart Cities • Better Tomorrow</p>
+        </div>
+
+    </div>
+
+    <nav>
+
+        <a href="/" class="nav-link">
+            🏠 Home
+        </a>
+
+        <a href="/citizen-dashboard" class="nav-link">
+            👤 Citizen
+        </a>
+
+        <a href="/admin-dashboard" class="nav-link active">
+            🏛️ Admin
+        </a>
+
+        <a href="#" class="nav-link">
+            🗺️ Civic Map
+        </a>
+
+        <a href="#" class="nav-link">
+            📊 Analytics
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="verification-container">
+
+    <!-- HEADER -->
+
+    <section class="verification-header">
+
+        <div>
+
+            <span class="admin-badge">
+                🤖 AI VERIFICATION CENTER
+            </span>
+
+            <h1>
+                Complaint <span>Verification</span>
+            </h1>
+
+            <p>
+                Review AI analysis and verify citizen complaints
+                before assigning them to departments.
+            </p>
+
+        </div>
+
+        <a href="/all-complaints" class="back-dashboard">
+            ← All Complaints
+        </a>
+
+    </section>
+
+
+    <!-- STATS -->
+
+    <section class="verification-stats">
+
+        <div class="verification-stat">
+
+            <div class="verification-stat-icon blue">
+                🤖
+            </div>
+
+            <div>
+                <span>AI ANALYZED</span>
+                <strong id="aiAnalyzedCount">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="verification-stat">
+
+            <div class="verification-stat-icon green">
+                ✓
+            </div>
+
+            <div>
+                <span>GENUINE</span>
+                <strong id="genuineCount">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="verification-stat">
+
+            <div class="verification-stat-icon orange">
+                🔁
+            </div>
+
+            <div>
+                <span>DUPLICATES</span>
+                <strong id="duplicateCount">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="verification-stat">
+
+            <div class="verification-stat-icon red">
+                ⚠️
+            </div>
+
+            <div>
+                <span>NEED REVIEW</span>
+                <strong id="reviewCount">0</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FILTER -->
+
+    <section class="verification-filter">
+
+        <div class="verification-search">
+
+            <span>🔎</span>
+
+            <input
+                type="text"
+                id="verificationSearch"
+                placeholder="Search complaint ID or issue..."
+            >
+
+        </div>
+
+
+        <select id="verificationStatus">
+
+            <option value="all">
+                All Verification
+            </option>
+
+            <option value="genuine">
+                Genuine
+            </option>
+
+            <option value="duplicate">
+                Duplicate
+            </option>
+
+            <option value="review">
+                Needs Review
+            </option>
+
+        </select>
+
+    </section>
+
+
+    <!-- REVIEW CARD -->
+
+    <section class="verification-review-card">
+
+        <!-- LEFT -->
+
+        <div class="evidence-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        📸 Complaint Evidence
+                    </h2>
+
+                    <p>
+                        Uploaded image or video submitted by citizen
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="evidence-image" id="evidenceContainer">
+
+                <div class="evidence-placeholder">
+
+                    📷
+
+                    <span>
+                        Select a complaint to view evidence
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="evidence-info">
+
+                <div>
+
+                    <span>FILE</span>
+
+                    <strong id="evidenceFileName">
+                        No evidence
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>LOCATION</span>
+
+                    <strong id="evidenceLocation">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="verification-details">
+
+            <div class="verification-id-row">
+
+                <div>
+
+                    <span>
+                        COMPLAINT ID
+                    </span>
+
+                    <strong id="verificationComplaintId">
+                        --
+                    </strong>
+
+                </div>
+
+                <span class="verified-badge" id="verificationBadge">
+                    ⏳ Pending Review
+                </span>
+
+            </div>
+
+
+            <!-- AI SCORE -->
+
+            <div class="ai-verification-score">
+
+                <div class="score-circle">
+
+                    <strong id="aiConfidence">
+                        0%
+                    </strong>
+
+                    <span>
+                        Confidence
+                    </span>
+
+                </div>
+
+
+                <div class="score-info">
+
+                    <h3>
+                        🤖 AI Analysis
+                    </h3>
+
+                    <p id="aiSummary">
+                        Select a complaint to view AI analysis.
+                    </p>
+
+                    <div class="detected-tags">
+
+                        <span id="detectedCategory">
+                            ⚠️ Other
+                        </span>
+
+                        <span id="detectedIssue">
+                            🔎 Analysis
+                        </span>
+
+                        <span id="detectedEnvironment">
+                            📍 Civic Issue
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DETAILS -->
+
+            <div class="verification-info-grid">
+
+                <div>
+
+                    <span>
+                        CATEGORY
+                    </span>
+
+                    <strong id="verificationCategory">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        PRIORITY
+                    </span>
+
+                    <strong
+                        id="verificationPriority"
+                        class="critical-value"
+                    >
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        DUPLICATE CHECK
+                    </span>
+
+                    <strong
+                        id="verificationDuplicate"
+                        class="genuine-value"
+                    >
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        STATUS
+                    </span>
+
+                    <strong id="verificationStatusValue">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="citizen-description">
+
+                <span>
+                    CITIZEN DESCRIPTION
+                </span>
+
+                <p id="citizenDescription">
+                    Select a complaint to view its description.
+                </p>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="verification-actions">
+
+                <button
+                    id="approveButton"
+                    class="approve-btn"
+                    onclick="approveComplaint()"
+                >
+                    ✓ Approve Complaint
+                </button>
+
+
+                <button
+                    id="duplicateButton"
+                    class="duplicate-btn"
+                    onclick="markDuplicate()"
+                >
+                    🔁 Mark Duplicate
+                </button>
+
+
+                <button
+                    id="rejectButton"
+                    class="reject-btn"
+                    onclick="rejectComplaint()"
+                >
+                    ✕ Reject
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUEUE -->
+
+    <section class="verification-queue">
+
+        <div class="queue-header">
+
+            <div>
+
+                <h2>
+                    📋 Verification Queue
+                </h2>
+
+                <p>
+                    Complaints available for authority review
+                </p>
+
+            </div>
+
+            <span id="queueCount">
+                0 Pending Review
+            </span>
+
+        </div>
+
+
+        <div class="queue-list">
+
+            <div class="verification-loading">
+                Loading complaints...
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="/js/complaint-verification.js"></script>
+
+</body>
+
+</html>

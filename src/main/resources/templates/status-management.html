@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Status Management | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body class="admin-page">
+
+
+<!-- ======================================================
+     NAVBAR
+     ====================================================== -->
+
+<header class="navbar">
+
+    <div class="logo-area">
+
+        <div class="logo-icon">
+            🚨
+        </div>
+
+        <div>
+
+            <h2>
+                AI Civic Reporter
+            </h2>
+
+            <p>
+                Smart Cities • Better Tomorrow
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="/" class="nav-link">
+            🏠 Home
+        </a>
+
+        <a href="/citizen-dashboard" class="nav-link">
+            👤 Citizen
+        </a>
+
+        <a href="/admin-dashboard" class="nav-link active">
+            🏛️ Admin
+        </a>
+
+        <a href="#" class="nav-link">
+            🗺️ Civic Map
+        </a>
+
+        <a href="#" class="nav-link">
+            📊 Analytics
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ======================================================
+     MAIN
+     ====================================================== -->
+
+<main class="status-container">
+
+
+    <!-- HEADER -->
+
+    <section class="status-header">
+
+        <div>
+
+            <span class="admin-badge">
+                ⚙️ ADMIN CONTROL CENTER
+            </span>
+
+            <h1>
+                Status <span>Management</span>
+            </h1>
+
+            <p>
+                Track and update the current status of civic complaints.
+            </p>
+
+        </div>
+
+
+        <a
+            href="/admin-dashboard"
+            class="back-dashboard"
+        >
+            ← Dashboard
+        </a>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         STATUS SUMMARY
+         ================================================== -->
+
+    <section class="status-stats">
+
+
+        <div class="status-stat">
+
+            <div class="status-stat-icon pending">
+                ⏳
+            </div>
+
+            <div>
+
+                <span>
+                    PENDING
+                </span>
+
+                <strong id="pendingCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="status-stat">
+
+            <div class="status-stat-icon assigned">
+                👨‍💼
+            </div>
+
+            <div>
+
+                <span>
+                    ASSIGNED
+                </span>
+
+                <strong id="assignedCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="status-stat">
+
+            <div class="status-stat-icon progress">
+                🔧
+            </div>
+
+            <div>
+
+                <span>
+                    IN PROGRESS
+                </span>
+
+                <strong id="progressCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="status-stat">
+
+            <div class="status-stat-icon resolved">
+                ✓
+            </div>
+
+            <div>
+
+                <span>
+                    RESOLVED
+                </span>
+
+                <strong id="resolvedCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         SEARCH + FILTER
+         ================================================== -->
+
+    <section class="status-filter">
+
+
+        <div class="status-search">
+
+            🔎
+
+            <input
+                type="text"
+                id="statusSearch"
+                placeholder="Search complaint ID, issue or location..."
+                oninput="filterStatusTable()"
+            >
+
+        </div>
+
+
+        <select
+            id="statusFilter"
+            onchange="filterStatusTable()"
+        >
+
+            <option value="all">
+                All Status
+            </option>
+
+            <option value="pending">
+                Pending
+            </option>
+
+            <option value="verified">
+                Verified
+            </option>
+
+            <option value="assigned">
+                Assigned
+            </option>
+
+            <option value="progress">
+                In Progress
+            </option>
+
+            <option value="resolved">
+                Resolved
+            </option>
+
+            <option value="closed">
+                Closed
+            </option>
+
+            <option value="rejected">
+                Rejected
+            </option>
+
+            <option value="duplicate">
+                Duplicate
+            </option>
+
+        </select>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         COMPLAINT STATUS TABLE
+         ================================================== -->
+
+    <section class="status-table-card">
+
+
+        <div class="status-table-heading">
+
+            <div>
+
+                <h2>
+                    📋 Complaint Status
+                </h2>
+
+                <p>
+                    Update complaint workflow from one place.
+                </p>
+
+            </div>
+
+
+            <span id="visibleCount">
+                0
+            </span>
+
+        </div>
+
+
+
+        <div class="status-table-wrapper">
+
+            <table class="status-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Complaint
+                        </th>
+
+                        <th>
+                            Issue
+                        </th>
+
+                        <th>
+                            Priority
+                        </th>
+
+                        <th>
+                            Current Status
+                        </th>
+
+                        <th>
+                            Update
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <!--
+                    IMPORTANT:
+                    No hardcoded complaints here.
+
+                    JavaScript will load all complaints
+                    from MySQL using /api/complaints
+                -->
+
+                <tbody id="statusTableBody">
+
+                    <tr>
+
+                        <td
+                            colspan="5"
+                            style="text-align:center; padding:40px;"
+                        >
+
+                            Loading complaints...
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         WORKFLOW
+         ================================================== -->
+
+    <section class="workflow-card">
+
+
+        <div class="workflow-heading">
+
+            <h2>
+                🔄 Complaint Resolution Workflow
+            </h2>
+
+            <p>
+                Standard process followed by the civic authority.
+            </p>
+
+        </div>
+
+
+
+        <div class="workflow">
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    1
+                </div>
+
+                <strong>
+                    Pending
+                </strong>
+
+                <span>
+                    Complaint received
+                </span>
+
+            </div>
+
+
+
+            <div class="workflow-line"></div>
+
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    2
+                </div>
+
+                <strong>
+                    Verified
+                </strong>
+
+                <span>
+                    AI/Admin verification
+                </span>
+
+            </div>
+
+
+
+            <div class="workflow-line"></div>
+
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    3
+                </div>
+
+                <strong>
+                    Assigned
+                </strong>
+
+                <span>
+                    Department assigned
+                </span>
+
+            </div>
+
+
+
+            <div class="workflow-line"></div>
+
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    4
+                </div>
+
+                <strong>
+                    In Progress
+                </strong>
+
+                <span>
+                    Work started
+                </span>
+
+            </div>
+
+
+
+            <div class="workflow-line"></div>
+
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    5
+                </div>
+
+                <strong>
+                    Resolved
+                </strong>
+
+                <span>
+                    Issue fixed
+                </span>
+
+            </div>
+
+
+
+            <div class="workflow-line"></div>
+
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    6
+                </div>
+
+                <strong>
+                    Closed
+                </strong>
+
+                <span>
+                    Final confirmation
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ======================================================
+     JAVASCRIPT
+     ====================================================== -->
+
+<script src="/js/status-management.js"></script>
+
+
+<!-- ======================================================
+     SUMMARY COUNT SCRIPT
+     ====================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    updateStatusSummary();
+
+});
+
+
+async function updateStatusSummary() {
+
+    try {
+
+        const response =
+            await fetch("/api/complaints");
+
+        if (!response.ok) {
+            return;
+        }
+
+        const complaints =
+            await response.json();
+
+
+        let pending = 0;
+        let assigned = 0;
+        let progress = 0;
+        let resolved = 0;
+
+
+        complaints.forEach(complaint => {
+
+            const status =
+                String(
+                    complaint.status || "Pending"
+                )
+                .trim()
+                .toLowerCase();
+
+
+            if (status === "pending") {
+                pending++;
+            }
+
+            else if (status === "assigned") {
+                assigned++;
+            }
+
+            else if (
+                status === "in progress" ||
+                status === "progress"
+            ) {
+                progress++;
+            }
+
+            else if (status === "resolved") {
+                resolved++;
+            }
+
+        });
+
+
+        const pendingElement =
+            document.getElementById(
+                "pendingCount"
+            );
+
+        const assignedElement =
+            document.getElementById(
+                "assignedCount"
+            );
+
+        const progressElement =
+            document.getElementById(
+                "progressCount"
+            );
+
+        const resolvedElement =
+            document.getElementById(
+                "resolvedCount"
+            );
+
+
+        if (pendingElement) {
+            pendingElement.textContent =
+                pending;
+        }
+
+        if (assignedElement) {
+            assignedElement.textContent =
+                assigned;
+        }
+
+        if (progressElement) {
+            progressElement.textContent =
+                progress;
+        }
+
+        if (resolvedElement) {
+            resolvedElement.textContent =
+                resolved;
+        }
+
+    }
+    catch (error) {
+
+        console.error(
+            "Could not load status summary:",
+            error
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>All Complaints | AI Civic Reporter</title>
+
+    <link rel="stylesheet"
+          href="/css/style.css">
+
+</head>
+
+
+<body class="admin-page">
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo-area">
+
+        <div class="logo-icon">
+            🚨
+        </div>
+
+        <div>
+
+            <h2>
+                AI Civic Reporter
+            </h2>
+
+            <p>
+                Smart Cities • Better Tomorrow
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="/" class="nav-link">
+            🏠 Home
+        </a>
+
+        <a href="/citizen-dashboard" class="nav-link">
+            👤 Citizen
+        </a>
+
+        <a href="/admin-dashboard" class="nav-link">
+            🏛️ Admin
+        </a>
+
+        <a href="#" class="nav-link">
+            🗺️ Civic Map
+        </a>
+
+        <a href="#" class="nav-link">
+            📊 Analytics
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN CONTAINER
+===================================================== -->
+
+<main class="complaints-container">
+
+
+    <!-- =================================================
+         PAGE HEADER
+    ================================================== -->
+
+    <section class="complaints-header">
+
+        <div>
+
+            <span class="admin-badge">
+                🏛️ ADMIN PORTAL
+            </span>
+
+
+            <h1>
+                All <span>Complaints</span>
+            </h1>
+
+
+            <p>
+                View, filter and manage all civic complaints
+                submitted by citizens.
+            </p>
+
+        </div>
+
+
+        <a href="/admin-dashboard"
+           class="back-dashboard">
+
+            ← Dashboard
+
+        </a>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SUMMARY
+    ================================================== -->
+
+    <section class="complaint-mini-stats">
+
+
+        <div>
+
+            <span>
+                TOTAL
+            </span>
+
+            <strong id="totalComplaints">
+                0
+            </strong>
+
+        </div>
+
+
+
+        <div>
+
+            <span>
+                PENDING
+            </span>
+
+            <strong id="pendingComplaints">
+                0
+            </strong>
+
+        </div>
+
+
+
+        <div>
+
+            <span>
+                IN PROGRESS
+            </span>
+
+            <strong id="progressComplaints">
+                0
+            </strong>
+
+        </div>
+
+
+
+        <div>
+
+            <span>
+                RESOLVED
+            </span>
+
+            <strong id="resolvedComplaints">
+                0
+            </strong>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         FILTER SECTION
+    ================================================== -->
+
+    <section class="complaint-filter-card">
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <span>
+                🔎
+            </span>
+
+
+            <input
+                type="text"
+                id="complaintSearch"
+                placeholder="Search Complaint ID, location or issue..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+
+        <!-- CATEGORY -->
+
+        <select id="categoryFilter">
+
+            <option value="all">
+                All Categories
+            </option>
+
+            <option value="pothole">
+                🛣️ Pothole
+            </option>
+
+            <option value="garbage">
+                🗑️ Garbage
+            </option>
+
+            <option value="water">
+                💧 Water
+            </option>
+
+            <option value="streetlight">
+                💡 Streetlight
+            </option>
+
+            <option value="other">
+                📌 Other
+            </option>
+
+        </select>
+
+
+
+        <!-- STATUS -->
+
+        <select id="statusFilter">
+
+            <option value="all">
+                All Status
+            </option>
+
+            <option value="pending">
+                Pending
+            </option>
+
+            <option value="verified">
+                Verified
+            </option>
+
+            <option value="assigned">
+                Assigned
+            </option>
+
+            <option value="progress">
+                In Progress
+            </option>
+
+            <option value="resolved">
+                Resolved
+            </option>
+
+            <option value="rejected">
+                Rejected
+            </option>
+
+            <option value="duplicate">
+                Duplicate
+            </option>
+
+        </select>
+
+
+
+        <!-- PRIORITY -->
+
+        <select id="priorityFilter">
+
+            <option value="all">
+                All Priority
+            </option>
+
+            <option value="critical">
+                Critical
+            </option>
+
+            <option value="high">
+                High
+            </option>
+
+            <option value="medium">
+                Medium
+            </option>
+
+            <option value="low">
+                Low
+            </option>
+
+        </select>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         TABLE CARD
+    ================================================== -->
+
+    <section class="complaints-table-card">
+
+
+        <!-- TABLE HEADING -->
+
+        <div class="table-heading">
+
+
+            <div>
+
+                <h2>
+                    📋 Complaint Records
+                </h2>
+
+
+                <p id="resultCount">
+                    Loading complaints...
+                </p>
+
+            </div>
+
+
+
+            <button
+                type="button"
+                class="refresh-btn"
+                onclick="refreshComplaints()"
+            >
+
+                ↻ Refresh
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             TABLE
+        ================================================== -->
+
+        <div class="all-table-wrapper">
+
+
+            <table
+                class="all-complaints-table"
+                id="complaintsTable"
+            >
+
+
+                <!-- TABLE HEADER -->
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+
+                        <th>
+                            Issue
+                        </th>
+
+
+                        <th>
+                            Location
+                        </th>
+
+
+                        <th>
+                            AI Verification
+                        </th>
+
+
+                        <th>
+                            Priority
+                        </th>
+
+
+                        <th>
+                            Status
+                        </th>
+
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <!-- TABLE BODY -->
+
+                <tbody>
+
+                    <!--
+                        Complaints will be loaded
+                        dynamically from:
+
+                        GET /api/complaints
+                    -->
+
+                    <tr>
+
+                        <td
+                            colspan="7"
+                            style="text-align:center; padding:30px;"
+                        >
+
+                            ⏳ Loading complaints...
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         INFORMATION CARD
+    ================================================== -->
+
+    <section
+        style="
+            margin-top:20px;
+            padding:18px 22px;
+            background:#ffffff;
+            border-radius:14px;
+            border:1px solid #e5e7eb;
+        "
+    >
+
+        <p
+            style="
+                margin:0;
+                color:#64748b;
+                font-size:14px;
+                line-height:1.6;
+            "
+        >
+
+            💡 Complaint records shown on this page are
+            retrieved directly from the AI Civic Reporter
+            database. Use the filters or search box to find
+            specific complaints.
+
+        </p>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="/js/all-complaints.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Report Details | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        /* Dynamic evidence styling */
+        .real-evidence-wrapper {
+            width: 100%;
+            min-height: 280px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .real-evidence-wrapper img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .real-evidence-wrapper video {
+            width: 100%;
+            max-height: 420px;
+            display: block;
+            background: #000;
+        }
+
+        .no-evidence {
+            text-align: center;
+            padding: 50px 20px;
+            color: #64748b;
+        }
+
+        .no-evidence-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .loading-details {
+            text-align: center;
+            padding: 80px 20px;
+            font-size: 18px;
+            color: #64748b;
+        }
+
+        .error-details {
+            text-align: center;
+            padding: 60px 20px;
+            color: #dc2626;
+        }
+
+        .dynamic-hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="report-page">
+
+<header class="navbar">
+
+    <div class="logo-area">
+
+        <div class="logo-icon">
+            🚨
+        </div>
+
+        <div>
+            <h2>AI Civic Reporter</h2>
+            <p>Smart Cities • Better Tomorrow</p>
+        </div>
+
+    </div>
+
+    <nav>
+
+        <a href="/" class="nav-link">
+            🏠 Home
+        </a>
+
+        <a href="/report" class="nav-link">
+            🚨 Report Issue
+        </a>
+
+        <a href="/citizen-dashboard" class="nav-link">
+            👤 Dashboard
+        </a>
+
+        <a href="#" class="nav-link">
+            🗺️ Civic Intelligence
+        </a>
+
+        <a href="#" class="nav-link">
+            🏛️ Admin
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="report-details-container">
+
+    <a href="/my-reports" class="back-link">
+        ← Back to My Reports
+    </a>
+
+
+    <!-- LOADING -->
+
+    <div id="loadingDetails" class="loading-details">
+        ⏳ Loading complaint details...
+    </div>
+
+
+    <!-- ACTUAL CONTENT -->
+
+    <div id="detailsContent" class="dynamic-hidden">
+
+
+        <!-- PAGE HEADER -->
+
+        <section class="details-page-header">
+
+            <div>
+
+                <span class="details-badge">
+                    📋 Complaint Details
+                </span>
+
+                <h1>
+                    Report
+                    <span id="headerComplaintId">---</span>
+                </h1>
+
+                <p>
+                    Complete information about your submitted civic complaint.
+                </p>
+
+            </div>
+
+
+            <div class="details-header-status">
+
+                <span class="status-label">
+                    CURRENT STATUS
+                </span>
+
+                <span id="headerStatus" class="big-status progress">
+                    🔄 Loading
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- TOP GRID -->
+
+        <section class="details-top-grid">
+
+
+            <!-- EVIDENCE -->
+
+            <div class="details-card evidence-card">
+
+                <div class="details-card-header">
+
+                    <div>
+
+                        <h2>
+                            📸 Evidence
+                        </h2>
+
+                        <p id="evidenceSubtitle">
+                            Uploaded complaint evidence
+                        </p>
+
+                    </div>
+
+                    <span id="evidenceTag" class="verified-tag">
+                        ✓ Uploaded
+                    </span>
+
+                </div>
+
+
+                <div id="evidenceContainer" class="real-evidence-wrapper">
+
+                    <div class="no-evidence">
+
+                        <div class="no-evidence-icon">
+                            📷
+                        </div>
+
+                        <strong>
+                            No evidence uploaded
+                        </strong>
+
+                        <p>
+                            No image or video is available for this complaint.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="evidence-info">
+
+                    <span id="evidenceFileName">
+                        📁 No file
+                    </span>
+
+                    <span id="evidenceFileSize">
+                        --
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ISSUE INFORMATION -->
+
+            <div class="details-card">
+
+                <div class="details-card-header">
+
+                    <div>
+
+                        <h2>
+                            📝 Issue Information
+                        </h2>
+
+                        <p>
+                            Complaint submitted by citizen
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-grid">
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Issue Category
+                        </span>
+
+                        <strong id="issueCategory">
+                            ---
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Complaint ID
+                        </span>
+
+                        <strong id="complaintId" class="blue-text">
+                            ---
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Reported Date
+                        </span>
+
+                        <strong id="reportedDate">
+                            ---
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span>
+                            Location
+                        </span>
+
+                        <strong id="issueLocation">
+                            📍 ---
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item full">
+
+                        <span>
+                            Citizen Description
+                        </span>
+
+                        <strong id="issueDescription" class="description-text">
+                            ---
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- AI ANALYSIS -->
+
+        <section class="details-card ai-analysis-card">
+
+            <div class="details-card-header">
+
+                <div>
+
+                    <span class="ai-mini-badge">
+                        🤖 AI POWERED
+                    </span>
+
+                    <h2>
+                        AI Verification & Analysis
+                    </h2>
+
+                    <p>
+                        Artificial Intelligence analyzed the uploaded
+                        evidence and complaint description.
+                    </p>
+
+                </div>
+
+
+                <div class="ai-confidence">
+
+                    <span>
+                        AI Confidence
+                    </span>
+
+                    <strong id="aiConfidence">
+                        --%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="ai-results-grid">
+
+
+                <div class="ai-result-box">
+
+                    <div class="ai-result-icon">
+                        🔍
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Detected Issue
+                        </span>
+
+                        <strong id="detectedIssue">
+                            ---
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ai-result-box">
+
+                    <div class="ai-result-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Verification
+                        </span>
+
+                        <strong id="verificationResult" class="success-text">
+                            ---
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ai-result-box">
+
+                    <div class="ai-result-icon">
+                        🔗
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Duplicate Check
+                        </span>
+
+                        <strong id="duplicateCheck">
+                            ---
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ai-result-box priority-box">
+
+                    <div class="ai-result-icon">
+                        ⚡
+                    </div>
+
+                    <div>
+
+                        <span>
+                            AI Priority Score
+                        </span>
+
+                        <strong id="priorityScore" class="high-text">
+                            ---
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOCATION + DEPARTMENT -->
+
+        <section class="details-two-column">
+
+
+            <!-- LOCATION -->
+
+            <div class="details-card">
+
+                <div class="details-card-header">
+
+                    <div>
+
+                        <h2>
+                            📍 Location
+                        </h2>
+
+                        <p>
+                            Reported problem location
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="location-box">
+
+                    <div class="map-placeholder">
+
+                        <div class="map-pin">
+                            📍
+                        </div>
+
+                        <span id="mapLocation">
+                            Location
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="coordinates">
+
+                    <span>
+                        Latitude
+                    </span>
+
+                    <strong id="latitude">
+                        --
+                    </strong>
+
+
+                    <span>
+                        Longitude
+                    </span>
+
+                    <strong id="longitude">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- DEPARTMENT -->
+
+            <div class="details-card">
+
+                <div class="details-card-header">
+
+                    <div>
+
+                        <h2>
+                            🏛️ Assigned Department
+                        </h2>
+
+                        <p>
+                            Authority handling this complaint
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="department-box">
+
+                    <div class="department-icon">
+                        🏛️
+                    </div>
+
+
+                    <div>
+
+                        <strong id="assignedDepartment">
+                            Not Assigned
+                        </strong>
+
+                        <span>
+                            Municipal Corporation
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="assigned-info">
+
+                    <div>
+
+                        <span>
+                            Assigned On
+                        </span>
+
+                        <strong id="assignedOn">
+                            Not Assigned
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Officer
+                        </span>
+
+                        <strong id="assignedOfficer">
+                            Not Assigned
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TIMELINE -->
+
+        <section class="details-card timeline-card">
+
+            <div class="details-card-header">
+
+                <div>
+
+                    <h2>
+                        🕐 Complaint Timeline
+                    </h2>
+
+                    <p>
+                        Track how your complaint is progressing
+                    </p>
+
+                </div>
+
+
+                <a href="/track-report" class="timeline-track-btn">
+                    Track Complaint →
+                </a>
+
+            </div>
+
+
+            <div class="timeline" id="complaintTimeline">
+
+                <!-- Timeline generated by JavaScript -->
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTIONS -->
+
+        <section class="details-actions">
+
+            <a href="/my-reports" class="secondary-action">
+                ← Back to My Reports
+            </a>
+
+
+            <a href="/track-report" class="primary-action">
+                📍 Track Complaint
+                <span>→</span>
+            </a>
+
+        </section>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div id="errorDetails" class="error-details dynamic-hidden">
+
+        <h2>
+            ❌ Complaint Not Found
+        </h2>
+
+        <p id="errorMessage">
+            Unable to load complaint details.
+        </p>
+
+        <br>
+
+        <a href="/my-reports" class="primary-action">
+            ← Back to My Reports
+        </a>
+
+    </div>
+
+</main>
+
+
+<script src="/js/report-details.js"></script>
+
+</body>
+
+</html>

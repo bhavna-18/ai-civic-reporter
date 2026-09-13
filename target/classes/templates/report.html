@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Report Issue | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+<body class="report-page">
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="report-navbar">
+
+    <div class="report-nav-inner">
+
+        <!-- BRAND -->
+
+        <a href="/" class="report-brand">
+
+            <div class="report-brand-icon">
+                🚨
+            </div>
+
+            <div class="report-brand-text">
+
+                <h2>AI Civic Reporter</h2>
+
+                <span>
+                    Smart Cities • Better Tomorrow
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="report-nav-links">
+
+            <a href="/">
+                🏠 Home
+            </a>
+
+            <a href="/report" class="active">
+                🚨 Report Issue
+            </a>
+
+            <a href="/citizen-dashboard">
+                👤 Citizen
+            </a>
+
+            <a href="/report-details">
+                🗺️ Civic Intelligence
+            </a>
+
+            <a href="/admin-dashboard">
+                🏛️ Admin
+            </a>
+
+        </nav>
+
+
+        <!-- LOGIN -->
+
+        <a href="/user-login" class="report-login-btn">
+
+            <span>👤</span>
+            Login
+
+        </a>
+
+
+        <!-- MOBILE MENU -->
+
+        <button class="report-menu-btn"
+                type="button"
+                onclick="toggleReportMenu()">
+
+            ☰
+
+        </button>
+
+    </div>
+
+
+    <!-- MOBILE NAV -->
+
+    <div id="reportMobileMenu" class="report-mobile-menu">
+
+        <a href="/">
+            🏠 Home
+        </a>
+
+        <a href="/report" class="active">
+            🚨 Report Issue
+        </a>
+
+        <a href="/citizen-dashboard">
+            👤 Citizen
+        </a>
+
+        <a href="/report-details">
+            🗺️ Civic Intelligence
+        </a>
+
+        <a href="/admin-dashboard">
+            🏛️ Admin
+        </a>
+
+        <a href="/user-login">
+            👤 Login
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="report-container">
+
+
+    <!-- =====================================================
+         PAGE HEADING
+    ====================================================== -->
+
+    <section class="report-heading">
+
+        <div class="report-badge">
+
+            <span class="report-badge-dot"></span>
+
+            🤖 AI POWERED REPORTING
+
+        </div>
+
+
+        <h1>
+
+            Report a
+            <span>Civic Issue</span>
+
+        </h1>
+
+
+        <p>
+
+            Help make your city better by reporting civic problems.
+            Our AI will analyze your complaint and help authorities
+            resolve it faster.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PROGRESS STEPS
+    ====================================================== -->
+
+    <section class="report-progress-wrapper">
+
+        <div class="report-progress">
+
+
+            <!-- STEP 1 -->
+
+            <div class="progress-step active">
+
+                <div class="progress-number">
+                    1
+                </div>
+
+                <span>
+                    Issue
+                </span>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <!-- STEP 2 -->
+
+            <div class="progress-step">
+
+                <div class="progress-number">
+                    2
+                </div>
+
+                <span>
+                    Location
+                </span>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <!-- STEP 3 -->
+
+            <div class="progress-step">
+
+                <div class="progress-number">
+                    3
+                </div>
+
+                <span>
+                    Evidence
+                </span>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <!-- STEP 4 -->
+
+            <div class="progress-step">
+
+                <div class="progress-number">
+                    4
+                </div>
+
+                <span>
+                    AI Analysis
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         REPORT CARD
+    ====================================================== -->
+
+    <section class="report-card">
+
+
+        <!-- CARD HEADER -->
+
+        <div class="card-title">
+
+            <div class="title-icon">
+                🚨
+            </div>
+
+
+            <div>
+
+                <h2>
+                    Tell us about the problem
+                </h2>
+
+                <p>
+                    Provide basic information about the civic issue.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CATEGORY
+        ================================================== -->
+
+        <div class="form-group">
+
+            <label>
+
+                Issue Category
+
+                <span>*</span>
+
+            </label>
+
+
+            <div class="category-grid">
+
+
+                <!-- POTHOLE -->
+
+                <button type="button"
+                        class="category-option"
+                        onclick="selectCategory(this, 'Pothole')">
+
+                    <div class="category-icon">
+                        🛣️
+                    </div>
+
+                    <strong>
+                        Pothole
+                    </strong>
+
+                    <small>
+                        Road damage
+                    </small>
+
+                </button>
+
+
+
+                <!-- GARBAGE -->
+
+                <button type="button"
+                        class="category-option"
+                        onclick="selectCategory(this, 'Garbage')">
+
+                    <div class="category-icon">
+                        🗑️
+                    </div>
+
+                    <strong>
+                        Garbage
+                    </strong>
+
+                    <small>
+                        Waste problem
+                    </small>
+
+                </button>
+
+
+
+                <!-- WATER -->
+
+                <button type="button"
+                        class="category-option"
+                        onclick="selectCategory(this, 'Water Leak')">
+
+                    <div class="category-icon">
+                        💧
+                    </div>
+
+                    <strong>
+                        Water Leak
+                    </strong>
+
+                    <small>
+                        Water issue
+                    </small>
+
+                </button>
+
+
+
+                <!-- STREET LIGHT -->
+
+                <button type="button"
+                        class="category-option"
+                        onclick="selectCategory(this, 'Street Light')">
+
+                    <div class="category-icon">
+                        💡
+                    </div>
+
+                    <strong>
+                        Street Light
+                    </strong>
+
+                    <small>
+                        Lighting issue
+                    </small>
+
+                </button>
+
+
+
+                <!-- DRAINAGE -->
+
+                <button type="button"
+                        class="category-option"
+                        onclick="selectCategory(this, 'Drainage')">
+
+                    <div class="category-icon">
+                        🚰
+                    </div>
+
+                    <strong>
+                        Drainage
+                    </strong>
+
+                    <small>
+                        Drainage issue
+                    </small>
+
+                </button>
+
+
+
+                <!-- OTHER -->
+
+                <button type="button"
+                        class="category-option"
+                        onclick="selectCategory(this, 'Other')">
+
+                    <div class="category-icon">
+                        📋
+                    </div>
+
+                    <strong>
+                        Other
+                    </strong>
+
+                    <small>
+                        Other civic issue
+                    </small>
+
+                </button>
+
+            </div>
+
+
+            <input type="hidden"
+                   id="selectedCategory"
+                   name="category">
+
+        </div>
+
+
+
+        <!-- =================================================
+             DESCRIPTION
+        ================================================== -->
+
+        <div class="form-group">
+
+            <label>
+
+                Describe the Problem
+
+                <span>*</span>
+
+            </label>
+
+
+            <div class="textarea-wrapper">
+
+                <textarea
+                    id="description"
+                    maxlength="500"
+                    placeholder="Example: Large pothole near the main road causing difficulty for vehicles..."
+                    rows="5"></textarea>
+
+
+                <div class="character-count">
+
+                    <span id="charCount">
+                        0
+                    </span>
+
+                    / 500
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             LOCATION
+        ================================================== -->
+
+        <div class="form-group">
+
+            <label>
+
+                Location
+
+                <span>*</span>
+
+            </label>
+
+
+            <div class="location-box">
+
+
+                <div class="location-icon">
+                    📍
+                </div>
+
+
+                <div class="location-info">
+
+                    <strong id="locationText">
+
+                        Location not selected
+
+                    </strong>
+
+
+                    <small>
+
+                        Use your current location or enter manually
+
+                    </small>
+
+                </div>
+
+
+                <button type="button"
+                        class="location-btn"
+                        onclick="getLocation()">
+
+                    📍
+                    <span>Use My Location</span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             INFORMATION NOTE
+        ================================================== -->
+
+        <div class="report-info-box">
+
+            <div class="report-info-icon">
+                🤖
+            </div>
+
+            <div>
+
+                <strong>
+                    AI Verification
+                </strong>
+
+                <p>
+
+                    After continuing, you can upload photo/video
+                    evidence. Our AI will analyze the evidence and
+                    help verify your civic complaint.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ACTIONS
+        ================================================== -->
+
+        <div class="form-actions">
+
+
+            <a href="/" class="back-btn">
+
+                <span>←</span>
+
+                Back
+
+            </a>
+
+
+            <button type="button"
+                    class="next-btn"
+                    onclick="goToEvidence()">
+
+                Continue
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="report-footer">
+
+    <div class="report-footer-inner">
+
+        <div>
+
+            <strong>
+                🚨 AI Civic Reporter
+            </strong>
+
+            <span>
+                Smart Cities • Better Tomorrow
+            </span>
+
+        </div>
+
+
+        <p>
+            © 2026 AI Civic Reporter. All Rights Reserved.
+        </p>
+
+
+        <div class="report-footer-status">
+
+            <span></span>
+
+            AI System Online
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="/js/report.js"></script>
+
+
+<script>
+
+function toggleReportMenu() {
+
+    const menu =
+        document.getElementById("reportMobileMenu");
+
+    if (!menu) return;
+
+    menu.classList.toggle("show");
+
+}
+
+
+/* Character counter */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const description =
+        document.getElementById("description");
+
+    const charCount =
+        document.getElementById("charCount");
+
+
+    if (description && charCount) {
+
+        description.addEventListener("input", function () {
+
+            charCount.textContent =
+                description.value.length;
+
+        });
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>

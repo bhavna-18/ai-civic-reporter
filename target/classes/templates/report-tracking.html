@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Track Report | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="report-page">
+
+<header class="navbar">
+
+    <div class="logo-area">
+
+        <div class="logo-icon">🚨</div>
+
+        <div>
+            <h2>AI Civic Reporter</h2>
+            <p>Smart Cities • Better Tomorrow</p>
+        </div>
+
+    </div>
+
+    <nav>
+
+        <a href="/" class="nav-link">🏠 Home</a>
+
+        <a href="/report" class="nav-link">🚨 Report Issue</a>
+
+        <a href="#" class="nav-link">👤 Citizen</a>
+
+        <a href="#" class="nav-link">🗺️ Civic Intelligence</a>
+
+        <a href="#" class="nav-link">🏛️ Admin</a>
+
+    </nav>
+
+</header>
+
+
+<main class="tracking-container">
+
+    <!-- HEADER -->
+
+    <section class="tracking-heading">
+
+        <span class="tracking-badge">
+            📍 Report Tracking
+        </span>
+
+        <h1>
+            Track Your <span>Civic Report</span>
+        </h1>
+
+        <p>
+            Follow your complaint from submission to final resolution.
+        </p>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <section class="tracking-search-card">
+
+        <label>
+            Enter Complaint ID
+        </label>
+
+        <div class="tracking-search">
+
+            <input
+                type="text"
+                id="complaintSearch"
+                placeholder="Example: CIVIC-2026-4821"
+            >
+
+            <button onclick="searchReport()">
+                Track Report
+                <span>→</span>
+            </button>
+
+        </div>
+
+        <small>
+            Your Complaint ID was provided after successful submission.
+        </small>
+
+    </section>
+
+
+    <!-- REPORT DETAILS -->
+
+    <section
+        class="tracking-result"
+        id="trackingResult"
+    >
+
+        <!-- REPORT TOP -->
+
+        <div class="tracking-top">
+
+            <div>
+
+                <span>
+                    Complaint ID
+                </span>
+
+                <h2 id="trackingId">
+                    CIVIC-2026-0000
+                </h2>
+
+            </div>
+
+            <div class="status-pill" id="trackingStatus">
+                ● In Progress
+            </div>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="tracking-summary">
+
+            <div class="tracking-summary-item">
+
+                <span>Issue</span>
+
+                <strong id="trackingIssue">
+                    Pothole
+                </strong>
+
+            </div>
+
+
+            <div class="tracking-summary-item">
+
+                <span>Priority</span>
+
+                <strong class="tracking-high">
+                    HIGH
+                </strong>
+
+            </div>
+
+
+            <div class="tracking-summary-item">
+
+                <span>Department</span>
+
+                <strong id="trackingDepartment">
+                    Road & Transport
+                </strong>
+
+            </div>
+
+
+            <div class="tracking-summary-item">
+
+                <span>Location</span>
+
+                <strong>
+                    Civic Area
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- TIMELINE -->
+
+        <div class="tracking-timeline">
+
+            <h2>
+                Complaint Progress
+            </h2>
+
+
+            <!-- STEP 1 -->
+
+            <div class="track-step completed"
+                data-tracking-status="pending">
+                <div class="track-icon">
+                    ✓
+                </div>
+
+                <div class="track-content">
+
+                    <div class="track-title">
+
+                        <strong>
+                            Complaint Submitted
+                        </strong>
+
+                        <span>
+                            Completed
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Your civic complaint was successfully received.
+                    </p>
+
+                    <small>
+                        Today • 10:42 AM
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 2 -->
+
+            <div class="track-step completed"  data-tracking-status="verified">
+
+                <div class="track-icon">
+                    ✓
+                </div>
+
+                <div class="track-content">
+
+                    <div class="track-title">
+
+                        <strong>
+                            AI Verification
+                        </strong>
+
+                        <span>
+                            Completed
+                        </span>
+
+                    </div>
+
+                    <p>
+                        AI analyzed the evidence and verified the issue.
+                    </p>
+
+                    <small>
+                        Today • 10:43 AM
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 3 -->
+
+            <div class="track-step completed"  data-tracking-status="assigned">
+
+                <div class="track-icon">
+                    ✓
+                </div>
+
+                <div class="track-content">
+
+                    <div class="track-title">
+
+                        <strong>
+                            Department Assigned
+                        </strong>
+
+                        <span>
+                            Completed
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Complaint assigned to Road & Transport Department.
+                    </p>
+
+                    <small>
+                        Today • 11:15 AM
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 4 -->
+
+            <div class="track-step current"  data-tracking-status="progress">
+
+                <div class="track-icon">
+                    ●
+                </div>
+
+                <div class="track-content">
+
+                    <div class="track-title">
+
+                        <strong>
+                            Issue In Progress
+                        </strong>
+
+                        <span>
+                            Current
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Civic workers are currently working on the issue.
+                    </p>
+
+                    <small>
+                        Updated recently
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 5 -->
+
+            <div class="track-step"  data-tracking-status="resolved">
+
+                <div class="track-icon">
+                    5
+                </div>
+
+                <div class="track-content">
+
+                    <div class="track-title">
+
+                        <strong>
+                            Resolution
+                        </strong>
+
+                        <span>
+                            Pending
+                        </span>
+
+                    </div>
+
+                    <p>
+                        The issue will be marked resolved after completion.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 6 -->
+
+            <div class="track-step">
+
+                <div class="track-icon">
+                    6
+                </div>
+
+                <div class="track-content">
+
+                    <div class="track-title">
+
+                        <strong>
+                            Citizen Feedback
+                        </strong>
+
+                        <span>
+                            Pending
+                        </span>
+
+                    </div>
+
+                    <p>
+                        You will be able to rate the resolution.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ESTIMATION -->
+
+        <div class="resolution-estimate">
+
+            <div class="estimate-icon">
+                ⏱️
+            </div>
+
+            <div>
+
+                <strong>
+                    Estimated Resolution
+                </strong>
+
+                <p>
+                    Expected within <b>3–5 days</b>
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ACTIONS -->
+
+    <div class="tracking-actions">
+
+        <a href="/" class="secondary-action">
+            🏠 Home
+        </a>
+
+        <a href="/report" class="primary-action">
+            🚨 Report Another Issue
+            <span>→</span>
+        </a>
+
+    </div>
+
+</main>
+
+
+<script src="/js/report-tracking.js"></script>
+
+</body>
+
+</html>

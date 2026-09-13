@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Officer Management | AI Civic Reporter</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="officer-page-body">
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar officer-navbar">
+
+        <div class="logo">
+            AI Civic Reporter
+        </div>
+
+        <button
+            type="button"
+            class="officer-menu-btn"
+            id="officerMenuBtn"
+            aria-label="Open navigation"
+            aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <div class="nav-links officer-nav-links" id="officerNavLinks">
+
+            <a href="/">Home</a>
+
+            <a href="/citizen-dashboard">
+                Citizen
+            </a>
+
+            <a href="/admin-dashboard">
+                Admin
+            </a>
+
+            <a href="/department-management">
+                Departments
+            </a>
+
+            <a href="/officer-management" class="active">
+                Officers
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="officer-main">
+
+        <div class="officer-container">
+
+
+            <!-- PAGE HEADER -->
+
+            <section class="page-header officer-page-header">
+
+                <div class="officer-heading">
+
+                    <h1>
+                        Officer Management 👨‍💼
+                    </h1>
+
+                    <p>
+                        Manage civic officers, departments and complaint assignments.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="add-btn officer-add-btn"
+                    onclick="openOfficerModal()">
+
+                    <span>+</span>
+                    Add Officer
+
+                </button>
+
+            </section>
+
+
+            <!-- ================= STATISTICS ================= -->
+
+            <section class="stats-grid officer-stats-grid">
+
+                <div class="stat-card officer-stat-card">
+
+                    <h4>Total Officers</h4>
+
+                    <h2 id="totalOfficers">0</h2>
+
+                </div>
+
+
+                <div class="stat-card officer-stat-card">
+
+                    <h4>Active Officers</h4>
+
+                    <h2 id="activeOfficers">0</h2>
+
+                </div>
+
+
+                <div class="stat-card officer-stat-card">
+
+                    <h4>Inactive Officers</h4>
+
+                    <h2 id="inactiveOfficers">0</h2>
+
+                </div>
+
+
+                <div class="stat-card officer-stat-card">
+
+                    <h4>Assigned Complaints</h4>
+
+                    <h2 id="assignedComplaints">0</h2>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= SEARCH / FILTER ================= -->
+
+            <section class="toolbar officer-toolbar">
+
+                <div class="officer-search-box">
+
+                    <input
+                        type="text"
+                        id="officerSearch"
+                        placeholder="Search officer by name, employee ID or email..."
+                        autocomplete="off">
+
+                </div>
+
+
+                <select id="departmentFilter">
+
+                    <option value="ALL">
+                        All Departments
+                    </option>
+
+                </select>
+
+
+                <select id="statusFilter">
+
+                    <option value="ALL">
+                        All Status
+                    </option>
+
+                    <option value="Active">
+                        Active
+                    </option>
+
+                    <option value="Inactive">
+                        Inactive
+                    </option>
+
+                </select>
+
+            </section>
+
+
+            <!-- ================= OFFICER CARDS ================= -->
+
+            <section
+                id="officerGrid"
+                class="officer-grid">
+
+                <div class="empty-state">
+                    Loading officers...
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= ADD / EDIT MODAL ================= -->
+
+    <div
+        class="modal officer-modal"
+        id="officerModal"
+        aria-hidden="true">
+
+        <div class="modal-box officer-modal-box">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="modalTitle">
+                        Add Officer
+                    </h2>
+
+                    <p class="officer-modal-subtitle">
+                        Add or update civic officer information.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="close-btn"
+                    onclick="closeOfficerModal()"
+                    aria-label="Close">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <form id="officerForm">
+
+                <input
+                    type="hidden"
+                    id="officerId">
+
+
+                <!-- Employee ID -->
+
+                <div class="form-group">
+
+                    <label for="employeeId">
+                        Employee ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="employeeId"
+                        placeholder="Example: OFF-001"
+                        required>
+
+                </div>
+
+
+                <!-- Name -->
+
+                <div class="form-group">
+
+                    <label for="officerName">
+                        Officer Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="officerName"
+                        placeholder="Enter officer name"
+                        required>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="officerEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="officerEmail"
+                        placeholder="officer@example.com"
+                        required>
+
+                </div>
+
+
+                <!-- Phone -->
+
+                <div class="form-group">
+
+                    <label for="officerPhone">
+                        Phone
+                    </label>
+
+                    <input
+                        type="text"
+                        id="officerPhone"
+                        placeholder="Enter phone number">
+
+                </div>
+
+
+                <!-- Department -->
+
+                <div class="form-group">
+
+                    <label for="officerDepartment">
+                        Department
+                    </label>
+
+                    <select
+                        id="officerDepartment"
+                        required>
+
+                        <option value="">
+                            Select Department
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Status -->
+
+                <div class="form-group">
+
+                    <label for="officerStatus">
+                        Status
+                    </label>
+
+                    <select id="officerStatus">
+
+                        <option value="Active">
+                            Active
+                        </option>
+
+                        <option value="Inactive">
+                            Inactive
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Message -->
+
+                <div
+                    id="formMessage"
+                    class="message">
+                </div>
+
+
+                <!-- Actions -->
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="closeOfficerModal()">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-btn">
+
+                        Save Officer
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SCRIPTS ================= -->
+
+    <script src="/js/admin-protection.js"></script>
+
+    <script src="/js/officer-management.js"></script>
+
+
+    <!-- Mobile Navbar -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const menuBtn =
+                document.getElementById("officerMenuBtn");
+
+            const navLinks =
+                document.getElementById("officerNavLinks");
+
+            const navbar =
+                document.querySelector(".officer-navbar");
+
+
+            if (!menuBtn || !navLinks || !navbar) {
+                return;
+            }
+
+
+            menuBtn.addEventListener("click", function (event) {
+
+                event.stopPropagation();
+
+                navbar.classList.toggle(
+                    "mobile-menu-open"
+                );
+
+                const isOpen =
+                    navbar.classList.contains(
+                        "mobile-menu-open"
+                    );
+
+                menuBtn.setAttribute(
+                    "aria-expanded",
+                    isOpen ? "true" : "false"
+                );
+
+            });
+
+
+            navLinks.querySelectorAll("a").forEach(
+                function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            navbar.classList.remove(
+                                "mobile-menu-open"
+                            );
+
+                            menuBtn.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+            document.addEventListener(
+                "click",
+                function (event) {
+
+                    if (!navbar.contains(event.target)) {
+
+                        navbar.classList.remove(
+                            "mobile-menu-open"
+                        );
+
+                        menuBtn.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+    </script>
+
+</body>
+</html>

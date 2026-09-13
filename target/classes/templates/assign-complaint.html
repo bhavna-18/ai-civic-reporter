@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Assign Complaint | AI Civic Reporter</title>
+
+    <link rel="stylesheet"
+          href="/css/style.css">
+
+</head>
+
+
+<body class="admin-page">
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo-area">
+
+        <div class="logo-icon">
+            🚨
+        </div>
+
+        <div>
+
+            <h2>
+                AI Civic Reporter
+            </h2>
+
+            <p>
+                Smart Cities • Better Tomorrow
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="/" class="nav-link">
+            🏠 Home
+        </a>
+
+        <a href="/citizen-dashboard"
+           class="nav-link">
+            👤 Citizen
+        </a>
+
+        <a href="/admin-dashboard"
+           class="nav-link active">
+            🏛️ Admin
+        </a>
+
+        <a href="#"
+           class="nav-link">
+            🗺️ Civic Map
+        </a>
+
+        <a href="#"
+           class="nav-link">
+            📊 Analytics
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="assign-container">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <section class="assign-header">
+
+        <div>
+
+            <span class="admin-badge">
+                🏛️ ADMIN PORTAL
+            </span>
+
+            <h1>
+                Assign <span>Complaint</span>
+            </h1>
+
+            <p>
+                Assign verified civic complaints to the
+                appropriate department and officer.
+            </p>
+
+        </div>
+
+
+        <a href="/complaint-verification"
+           class="back-dashboard">
+
+            ← Verification
+
+        </a>
+
+    </section>
+
+
+
+    <!-- ================= LOADING ================= -->
+
+    <div id="loadingMessage"
+         style="
+            text-align:center;
+            padding:20px;
+            font-weight:600;
+         ">
+
+        Loading complaint from database...
+
+    </div>
+
+
+
+    <!-- ================= COMPLAINT SUMMARY ================= -->
+
+    <section class="assignment-card">
+
+
+        <div class="assignment-title">
+
+            <div>
+
+                <span>
+                    COMPLAINT ID
+                </span>
+
+                <h2 id="complaintId">
+                    Loading...
+                </h2>
+
+            </div>
+
+
+            <span class="assigned-status"
+                  id="complaintStatus">
+
+                Loading...
+
+            </span>
+
+        </div>
+
+
+
+        <!-- SUMMARY GRID -->
+
+        <div class="complaint-summary-grid">
+
+
+            <!-- ISSUE -->
+
+            <div>
+
+                <span>
+                    ISSUE
+                </span>
+
+                <strong id="complaintCategory">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+
+            <!-- LOCATION -->
+
+            <div>
+
+                <span>
+                    LOCATION
+                </span>
+
+                <strong id="complaintLocation">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+
+            <!-- PRIORITY -->
+
+            <div>
+
+                <span>
+                    PRIORITY
+                </span>
+
+                <strong id="complaintPriority"
+                        class="high-text">
+
+                    Loading...
+
+                </strong>
+
+            </div>
+
+
+
+            <!-- AI CONFIDENCE -->
+
+            <div>
+
+                <span>
+                    AI CONFIDENCE
+                </span>
+
+                <strong id="complaintConfidence"
+                        class="green-text">
+
+                    Loading...
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= DESCRIPTION ================= -->
+
+    <section class="assignment-form-card"
+             id="complaintDescriptionCard"
+             style="display:none;">
+
+        <div class="form-heading">
+
+            <h2>
+                📝 Complaint Description
+            </h2>
+
+            <p id="complaintDescription">
+                -
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= ASSIGNMENT FORM ================= -->
+
+    <section class="assignment-form-card">
+
+
+        <div class="form-heading">
+
+            <h2>
+                👨‍💼 Department Assignment
+            </h2>
+
+            <p>
+                Select the department and responsible officer.
+            </p>
+
+        </div>
+
+
+
+        <form id="assignmentForm">
+
+
+            <div class="assignment-grid">
+
+
+                <!-- ================= DEPARTMENT ================= -->
+
+                <div class="assign-field">
+
+                    <label>
+                        Department
+                    </label>
+
+
+                    <select id="department"
+                            required>
+
+                        <option value="">
+                            Select Department
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- ================= OFFICER ================= -->
+
+                <div class="assign-field">
+
+                    <label>
+                        Responsible Officer
+                    </label>
+
+
+                    <select id="officer"
+                            required>
+
+                        <option value="">
+                            Select Officer
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- ================= DEADLINE ================= -->
+
+                <div class="assign-field">
+
+                    <label>
+                        Expected Resolution Date
+                    </label>
+
+
+                    <input type="date"
+                           id="deadline"
+                           required>
+
+                </div>
+
+
+
+                <!-- ================= PRIORITY ================= -->
+
+                <div class="assign-field">
+
+                    <label>
+                        Assignment Priority
+                    </label>
+
+
+                    <select id="assignPriority"
+                            required>
+
+                        <option value="Critical">
+                            🔴 Critical
+                        </option>
+
+                        <option value="High"
+                                selected>
+                            🟠 High
+                        </option>
+
+                        <option value="Medium">
+                            🟡 Medium
+                        </option>
+
+                        <option value="Low">
+                            🟢 Low
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= INSTRUCTIONS ================= -->
+
+            <div class="assign-field full-field">
+
+                <label>
+                    Assignment Instructions
+                </label>
+
+
+                <textarea
+                    id="instructions"
+                    rows="4"
+                    placeholder="Add instructions for the assigned officer..."
+                ></textarea>
+
+            </div>
+
+
+
+            <!-- ================= ACTIONS ================= -->
+
+            <div class="assignment-actions">
+
+
+                <a href="/complaint-verification"
+                   class="cancel-assignment">
+
+                    Cancel
+
+                </a>
+
+
+                <button type="submit"
+                        class="assign-submit">
+
+                    ✓ Assign Complaint
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </section>
+
+
+
+    <!-- ================= SUCCESS MESSAGE ================= -->
+
+    <section class="assignment-preview"
+             id="assignmentPreview"
+             style="display:none;">
+
+
+        <div class="preview-icon">
+            ✓
+        </div>
+
+
+        <div>
+
+            <h3>
+                Complaint Assigned Successfully
+            </h3>
+
+
+            <p id="assignmentMessage">
+                Complaint has been assigned.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= RECENT ASSIGNMENTS ================= -->
+
+    <section class="recent-assignment-card">
+
+
+        <div class="recent-heading">
+
+            <div>
+
+                <h2>
+                    📋 Recent Assignments
+                </h2>
+
+                <p>
+                    Recently assigned complaints
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DATABASE DATA WILL LOAD HERE -->
+
+        <div class="recent-list"
+             id="recentAssignments">
+
+            <p style="
+                text-align:center;
+                padding:20px;
+            ">
+
+                Loading recent assignments...
+
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="/js/assign-complaint.js"></script>
+
+
+</body>
+
+</html>
